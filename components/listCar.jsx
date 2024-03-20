@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function ListCar({image_url, merk, description}) {
   return (
     <Card className="m-auto" imgSrc={image_url} horizontal>
-      <Link href={"/car/1"}>
+      <Link href={"/car/show/1"}>
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {merk}
       </h5>

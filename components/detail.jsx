@@ -77,7 +77,6 @@ RISKA
 NO.TELP & WA TERTERA DI PROFIL
 
 THANKYOU</p>
-    <Button type="primary" className="m-auto"><Link href={'/checkout'}>Beli Sekarang</Link></Button>
   </Card>
   </>
   )

@@ -22,26 +22,47 @@ export default function CheckOut({imageUrl, merk ,description}) {
         <div>
             <h1 className='font-black text-3xl'>Beli Aman & Terpercaya dengan SanberCar</h1>
             <h1 className='font-black text-xl mt-6'>Pesan Mobil Ini</h1>
-        <figcaption className='flex justify-between mt-6'>
-            <div>
-                <p>Brand :</p>
-                <p>Merk:</p>
-                <p>Harga :</p>
-                <p>Warna :</p>
-                <p>Kondisi :</p>
-                <p>Tipe :</p>
-                <p>KM :</p>
-                <br></br>
-                <p>Pembayaran via</p>
-                <p>Voucher</p>
-                
-            </div>
-            <div>
-                <p>Honda Brio</p>
+        <figcaption className='mr-16'>
+            <div className='flex justify-between mt-6'>
+                <p>Brand :</p><p>Honda</p>
             </div>
             <hr></hr>
+            <div className='flex justify-between'>
+                <p>Merk :</p><p>Brio</p>
+            </div>
+            <hr></hr>
+            <div className='flex justify-between'>
+                <p>Harga :</p><p>170.000.000</p>
+            </div>
+            <hr></hr>
+            <div className='flex justify-between'>
+                <p>Warna :</p><p>Putih</p>
+            </div>
+            <hr></hr>
+            <div className='flex justify-between'>
+                <p>Kondisi :</p><p>Bekas</p>
+            </div>
+            <hr></hr>
+            <div className='flex justify-between'>
+                <p>Harga :</p><p>170.000.000</p>
+            </div>
+            <hr></hr>
+            <div className='flex justify-between'>
+                <p>Tipe :</p><p>LCGC Matic</p>
+            </div>
+            <hr></hr>
+            <div className='flex justify-between'>
+                <p>Kilometer :</p><p>100.000 KM</p>
+            </div>
+            <hr></hr>
+            <div className='flex justify-between'>
+                <p>Pembayaran via :</p><p>Transfer Bank</p>
+            </div>
+            <hr></hr>
+                {/* <p>Voucher</p>
+            <hr></hr> */}
         </figcaption>
-            <Button type="primary" className="m-auto"><Link href={'/checkout'}>Beli Sekarang</Link></Button>
+            <Button type="primary" className="mt-6"><Link href={'/checkout/payment'}>Beli Sekarang</Link></Button>
 
         </div>
     </div>

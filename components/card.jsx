@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Cards({imageUrl, merk ,description}) {
   return (
-    <Link href='/car/1' >
+    <Link href='/car/show/1' >
     <Card
       className="max-w-sm"
       renderImage={() => <Image width={500} height={500} src={imageUrl} alt="image 1" />}

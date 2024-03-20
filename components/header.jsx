@@ -2,6 +2,7 @@
 'use client';
 
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 
 export default function Header() {
   return (
@@ -23,19 +24,22 @@ export default function Header() {
             <span className="block truncate text-sm font-medium">name@flowbite.com</span>
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item>Settings</Dropdown.Item>
+          <Dropdown.Item>Login</Dropdown.Item>
+          <Dropdown.Item>Register</Dropdown.Item>
           <Dropdown.Item>Status Pembelian</Dropdown.Item>
+          <Dropdown.Item>Lihat Penjualan</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>Sign out</Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/products" className='text-white'>Mobil Bekas</Navbar.Link>
-        <Navbar.Link href="/products" className='text-white'>Mobil Baru</Navbar.Link>
-        <Navbar.Link href="/products" className='text-white'>Mobil Listrik</Navbar.Link>
-        <Navbar.Link href="/products" className='text-white'>Mobil Matic</Navbar.Link>
-        <Navbar.Link href="/products" className='text-white'>Mobil Manual</Navbar.Link>
+        <Navbar.Link href="/products" className='text-white my-3'>Mobil Bekas</Navbar.Link>
+        <Navbar.Link href="/products" className='text-white my-3'>Mobil Baru</Navbar.Link>
+        <Navbar.Link href="/products" className='text-white my-3'>Mobil Listrik</Navbar.Link>
+        <Navbar.Link href="/products" className='text-white my-3'>Mobil Matic</Navbar.Link>
+        <Navbar.Link href="/products" className='text-white my-3'>Mobil Manual</Navbar.Link>
+        <Navbar.Link href="/products" className='text-white'><Button className='bg-yellow-400'>Jual Mobil</Button></Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );

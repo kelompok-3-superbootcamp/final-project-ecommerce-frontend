@@ -1,41 +1,9 @@
 import Image from "next/image"
 import { Inter } from "next/font/google"
-import { UploadButton } from "@/utils/uploadthing"
-import { generateReactHelpers } from "@uploadthing/react"
-import { useState } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
-  const { uploadFiles } = generateReactHelpers()
-  const [file, setFile] = useState(null)
-
-  const fileUploadHanlder = async () => {
-    if (!file) return
-
-    const formData = new FormData()
-    formData.append("file", file)
-
-    const uploadResponse = await uploadFiles({
-      files: [file],
-      endpoint: "imageUploader",
-    })
-
-    return uploadResponse
-  }
-
-  console.log("target", file)
-  const handleChange = e => {
-    if (e.target.files) {
-      const data = e.target.files[0]
-      if (data.size > 1024 * 3000) {
-        return alert("too big")
-      } else {
-        setFile(e.target.files[0])
-      }
-    }
-  }
-
   return (
     <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -43,17 +11,6 @@ export default function Home() {
           Get started by editing&nbsp;
           <code className="font-mono font-bold">pages/index.js</code>
         </p>
-        <input
-          type="file"
-          name="file"
-          id="file"
-          className=" bg-red-700 p-4"
-          placeholder="Upload here"
-          onChange={handleChange}
-        />
-        <button className="bg-blue-500 p-2" onClick={fileUploadHanlder}>
-          Submit
-        </button>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"

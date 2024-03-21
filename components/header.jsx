@@ -26,7 +26,7 @@ export default function Header() {
           <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Login</Dropdown.Item>
           <Dropdown.Item>Register</Dropdown.Item>
-          <Dropdown.Item>Status Pembelian</Dropdown.Item>
+          <Dropdown.Item href='/profile/pembelian'>Status Pembelian</Dropdown.Item>
           <Dropdown.Item>Lihat Penjualan</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>Sign out</Dropdown.Item>
@@ -39,7 +39,7 @@ export default function Header() {
         <Navbar.Link href="/products" className='text-white my-3'>Mobil Listrik</Navbar.Link>
         <Navbar.Link href="/products" className='text-white my-3'>Mobil Matic</Navbar.Link>
         <Navbar.Link href="/products" className='text-white my-3'>Mobil Manual</Navbar.Link>
-        <Navbar.Link href="/products" className='text-white'><Button className='bg-yellow-400'>Jual Mobil</Button></Navbar.Link>
+        <Navbar.Link href="/car/create" className='text-white'><Button className='bg-yellow-400'>Jual Mobil</Button></Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );

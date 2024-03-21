@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import Cards from "./Cards"
 import axios from "axios"
 import Slider from "react-slick"
-import Image from "next/image"
 
 export default function Grid() {
   const [newCars, setNewCars] = useState([])

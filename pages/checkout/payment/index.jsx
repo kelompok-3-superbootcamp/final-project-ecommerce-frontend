@@ -1,5 +1,6 @@
 import CheckOut from "@/components/checkOut"
 import { Button } from "flowbite-react"
+import Link from "next/link"
 
 const Payment = () => {
     return (
@@ -19,7 +20,7 @@ const Payment = () => {
                 <h1 className="text-xl text-slate-700">Nomor Virtual Account</h1>
                 <h1 className="text-xl">720807764797</h1>
                 <div className="h-1 w-full bg-slate-300 my-6 rounded"></div>
-                <Button className="w-full">Kembali ke Merchant</Button>
+                <Link href={'/profile/pembelian'}><Button className="w-full">Kembali ke Merchant</Button></Link>
                 </div>
             </div>
             <div className="bg-white max-w-96 m-auto items-center h-24"></div>

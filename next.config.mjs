@@ -39,6 +39,10 @@ const nextConfig = {
     "rc-upload",
     "rc-util",
   ],
+  images: {
+    domains: ['via.placeholder.com']
+  }
+
 };
 
 export default nextConfig;

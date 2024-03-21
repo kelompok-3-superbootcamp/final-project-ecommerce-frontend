@@ -1,29 +1,101 @@
-import Cards from "./card"
+import { useEffect, useState } from "react"
+import Cards from "./Cards"
+import axios from "axios"
+import Slider from "react-slick"
+import Image from "next/image"
 
-export default function Grid(){
-    let cars = ["/brio.jpeg", "/fortuner.jpeg", "/omoda.jpeg", "/brio.jpeg","/xenia.jpeg","/sigra.jpeg"]
-    let merk = 'Honda Brio 2024'
-    let desc = 'Rp 334.800.000 - Rp 493.800.000'
-    return (
-        <>
-        <div className="px-10 pt-10 text-4xl font-bold space-y-7">
-            <h1>Mobil Terbaru</h1>
-        </div>
-        <div class="grid grid-cols-4 gap-4 p-10">
-            {cars.slice(0,4).map((car, index) => (
-                <Cards imageUrl={car} merk={merk} description={desc} key={index}></Cards>
-            ))}
-        </div>
-        <div className="px-10 pt-10 text-4xl font-bold space-y-7">
-            <h1>LCGC Bekas</h1>
-        </div>
-        <div class="grid grid-cols-4 gap-4 p-10">
-            {cars.slice(4,6).map((car, index) => (
-                <div key={index}>
-                   <Cards imageUrl={car} merk={merk} description={desc} />
-                </div>
-            ))}
-        </div>
-        </>
-    )
+export default function Grid() {
+  const [newCars, setNewCars] = useState([])
+  const [secondCars, setSecondCars] = useState([])
+  const [fetchStatus, setFetchStatus] = useState(true)
+
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
+  }
+
+  useEffect(() => {
+    if (fetchStatus === true) {
+      axios
+        .get("http://127.0.0.1:8000/api/cars", { params: { condition: "baru" } })
+        .then(response => {
+          setNewCars([...response.data.data.data])
+        })
+        .catch(error => {
+          console.error(error)
+        })
+      axios
+        .get("http://127.0.0.1:8000/api/cars", { params: { condition: "bekas" } })
+        .then(response => {
+          setSecondCars([...response.data.data.data])
+        })
+        .catch(error => {
+          console.error(error)
+        })
+      setFetchStatus(false)
+    }
+  }, [fetchStatus, setFetchStatus])
+
+  return (
+    <div className="container mx-auto">
+      <div className="space-y-7 px-5 pt-10 text-4xl font-semibold">
+        <h1>Mobil Terbaru</h1>
+      </div>
+
+      <div className="mx-auto mb-10">
+        <Slider {...settings}>
+          {newCars.map(car => (
+            <div key={car.id}>
+              <Cards carId={car.id} carName={car.name} carPrice={car.price} carImage={car.image} />
+            </div>
+          ))}
+        </Slider>
+      </div>
+
+      <div className="space-y-7 px-5 pt-10 text-4xl font-semibold">
+        <h1>Mobil Bekas</h1>
+      </div>
+      <div className="mx-auto mb-10">
+        <Slider {...settings}>
+          {secondCars.map(car => (
+            <div key={car.id}>
+              <Cards carId={car.id} carName={car.name} carPrice={car.price} carImage={car.image} />
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </div>
+  )
 }

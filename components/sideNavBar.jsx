@@ -30,7 +30,7 @@ export default function SideBar() {
           <Sidebar.Item href="/profile/orders" icon={HiInbox} label="1">
             Pesanan Masuk
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiChartPie}>
+          <Sidebar.Item href="/profile/review" icon={HiChartPie}>
             Review Toko Mu
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiArrowSmRight}>

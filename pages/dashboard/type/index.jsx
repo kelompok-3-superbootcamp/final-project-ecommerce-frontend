@@ -1,11 +1,5 @@
-import { DashLayout } from "@/components/Layouts"
-
 const Type = () => {
-  return (
-    <DashLayout>
-      <div className="h-screen bg-blue-500">Type</div>
-    </DashLayout>
-  )
+  return <div className="h-screen bg-blue-500">Type</div>
 }
 
 export default Type

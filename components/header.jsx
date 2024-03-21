@@ -28,6 +28,7 @@ export default function Header() {
           <Dropdown.Item>Register</Dropdown.Item>
           <Dropdown.Item href='/profile/pembelian'>Status Pembelian</Dropdown.Item>
           <Dropdown.Item>Lihat Penjualan</Dropdown.Item>
+          <Dropdown.Item href='/profile/wishlists'>Wishlists</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>Sign out</Dropdown.Item>
         </Dropdown>

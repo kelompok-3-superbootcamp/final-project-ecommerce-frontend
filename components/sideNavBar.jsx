@@ -6,10 +6,11 @@ import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, Hi
 
 export default function SideBar() {
   return (
-    <Sidebar aria-label="Default sidebar example" className='mt-0'>
+    <div className="bg-white items-start">
+      <Sidebar aria-label="Default sidebar example" className='mt-0 sticky top-0 h-vh'>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiUser}>
+          <Sidebar.Item href="/profile/user" icon={HiUser}>
             Profil
           </Sidebar.Item>
           <Sidebar.Item href="/profile/wishlists" className='px-0'>
@@ -20,26 +21,27 @@ export default function SideBar() {
             Wishlists
             </div>
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiViewBoards} label="Pro" labelColor="dark">
-            Kanban
+          <Sidebar.Item href="/profile/etalase" icon={HiViewBoards} label="Seller" labelColor="dark">
+            Etalase
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiInbox} label="3">
-            Inbox
+          <Sidebar.Item href="/profile/pembelian" icon={HiShoppingBag}>
+            Status Pembelian
+          </Sidebar.Item>
+          <Sidebar.Item href="/profile/orders" icon={HiInbox} label="1">
+            Pesanan Masuk
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiChartPie}>
-            Users
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiShoppingBag}>
-            Products
+            Review Toko Mu
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiArrowSmRight}>
             Sign In
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiTable}>
-            Sign Up
+            Log Out
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
+    </div>
   );
 }

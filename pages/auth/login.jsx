@@ -33,14 +33,15 @@ const Login = () => {
       .then((res) => {
         const { email } = formData;
         const { access_token } = res.data.data;
+        const { name, role } = res.data.data.user
         Swal.fire({
           icon: "success",
           title: "Success",
           text: "Berhasil Login",
         });
         console.log('respon',res.data)
-        login({ access_token, email });
-        router.push("/");
+        login({ access_token, email, name, role });
+        router.push("/home");
       })
       .catch((err) => {
         Swal.fire({

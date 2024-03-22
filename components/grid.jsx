@@ -9,7 +9,7 @@ export default function Grid(){
         <div className="px-10 pt-10 text-4xl font-bold space-y-7">
             <h1>Mobil Terbaru</h1>
         </div>
-        <div class="grid grid-cols-4 gap-4 p-10">
+        <div className="grid grid-cols-4 gap-4 p-10">
             {cars.slice(0,4).map((car, index) => (
                 <Cards imageUrl={car} merk={merk} description={desc} key={index}></Cards>
             ))}
@@ -17,7 +17,7 @@ export default function Grid(){
         <div className="px-10 pt-10 text-4xl font-bold space-y-7">
             <h1>LCGC Bekas</h1>
         </div>
-        <div class="grid grid-cols-4 gap-4 p-10">
+        <div className="grid grid-cols-4 gap-4 p-10">
             {cars.slice(4,6).map((car, index) => (
                 <div key={index}>
                    <Cards imageUrl={car} merk={merk} description={desc} />

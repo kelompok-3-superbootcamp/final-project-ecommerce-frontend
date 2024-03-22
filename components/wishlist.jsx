@@ -6,12 +6,12 @@ export default function Wishlist(){
     let desc = 'Rp 334.800.000 - Rp 493.800.000'
     return (
         <>
-        <div class="grid grid-cols-4 gap-4 p-10">
+        <div className="grid grid-cols-4 gap-4 p-10">
             {cars.slice(0,4).map((car, index) => (
                 <Cards imageUrl={car} merk={merk} description={desc} key={index}></Cards>
             ))}
         </div>
-        <div class="grid grid-cols-4 gap-4 p-10">
+        <div className="grid grid-cols-4 gap-4 p-10">
             {cars.slice(4,6).map((car, index) => (
                 <div key={index}>
                    <Cards imageUrl={car} merk={merk} description={desc} />

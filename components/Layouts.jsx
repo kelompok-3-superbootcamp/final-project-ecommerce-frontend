@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons"
-import { Layout, Menu, Button, theme } from "antd"
+import { Layout, Menu, Button, theme, Breadcrumb } from "antd"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -16,6 +16,7 @@ export const DashLayout = ({ children }) => {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
   const [path, setPath] = useState("")
+  const [breadcrumb, setBreadcrumb] = useState([])
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -25,12 +26,12 @@ export const DashLayout = ({ children }) => {
     {
       key: "product",
       icon: <FaCar />,
-      label: <Link href={"/dashboard/product"}>Manage Product</Link>,
+      label: <Link href={"/dashboard/product"}>Produk</Link>,
     },
     {
       key: "order",
       icon: <FaShoppingCart />,
-      label: <Link href={"/dashboard/order"}>Order</Link>,
+      label: <Link href={"/dashboard/order"}>Pesanan</Link>,
     },
     {
       key: "voucher",
@@ -40,14 +41,14 @@ export const DashLayout = ({ children }) => {
     {
       key: "review",
       icon: <MdReviews />,
-      label: <Link href={"/dashboard/review"}>Review</Link>,
+      label: <Link href={"/dashboard/review"}>Ulasan</Link>,
     },
     {
       type: "group",
       label: "Master Data",
       children: [
         {
-          label: <Link href={"/dashboard/type"}>Type</Link>,
+          label: <Link href={"/dashboard/type"}>Tipe</Link>,
           key: "type",
           icon: <BsFuelPumpFill />,
         },
@@ -65,6 +66,25 @@ export const DashLayout = ({ children }) => {
       const regex = /^\/dashboard\//
       const result = pathname.replace(regex, "")
       setPath(result)
+      const listPath = pathname.split("/").slice(1)
+      setBreadcrumb(
+        pathname
+          .split("/")
+          .slice(1)
+          .map((item, index) => {
+            if (index === listPath.length - 1) {
+              return { title: item }
+            } else {
+              return {
+                title: item,
+                href: `/${pathname
+                  .split("/")
+                  .slice(1, index + 2)
+                  .join("/")}`,
+              }
+            }
+          }),
+      )
     }
   }, [pathname])
   return (
@@ -94,7 +114,7 @@ export const DashLayout = ({ children }) => {
       <Layout>
         <Header
           style={{ padding: 0, background: colorBgContainer }}
-          className="sticky top-0 border-b border-zinc-500 bg-opacity-50 backdrop-blur-sm"
+          className="sticky top-0 z-50 border-b border-zinc-500 bg-opacity-50 backdrop-blur-sm"
         >
           <Button
             type="text"
@@ -107,6 +127,7 @@ export const DashLayout = ({ children }) => {
             }}
           />
         </Header>
+        <Breadcrumb className="!pl-8 !pt-6 capitalize" separator=">" items={breadcrumb} />
         <Content
           style={{
             margin: "24px 16px",
@@ -119,7 +140,7 @@ export const DashLayout = ({ children }) => {
         >
           {children}
         </Content>
-        <Footer>Copyright &copy; SanberCar 2024</Footer>
+        <Footer className="!bg-white">Copyright &copy; SanberCar 2024</Footer>
       </Layout>
     </Layout>
   )

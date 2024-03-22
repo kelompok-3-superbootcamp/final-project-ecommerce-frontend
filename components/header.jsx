@@ -24,8 +24,8 @@ export default function Header() {
             <span className="block truncate text-sm font-medium">name@flowbite.com</span>
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item>Login</Dropdown.Item>
-          <Dropdown.Item>Register</Dropdown.Item>
+          <Dropdown.Item href='/auth/login'>Login</Dropdown.Item>
+          <Dropdown.Item href='/auth/register'>Register</Dropdown.Item>
           <Dropdown.Item href='/profile/pembelian'>Status Pembelian</Dropdown.Item>
           <Dropdown.Item>Lihat Penjualan</Dropdown.Item>
           <Dropdown.Item href='/profile/wishlists'>Wishlists</Dropdown.Item>

@@ -1,54 +1,54 @@
-import { SubmitButton } from "@/components/buttons";
-import { EmailInput, PasswordInput } from "@/components/forms";
-import axios from "axios";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { FaArrowLeft } from "react-icons/fa";
-import Swal from "sweetalert2";
-import { useAuthStore } from "@/stores/auth";
-import { host } from "@/utils/constant";
+import { SubmitButton } from "@/components/buttons"
+import { EmailInput, PasswordInput } from "@/components/forms"
+import axios from "axios"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import React, { useState } from "react"
+import { FaArrowLeft } from "react-icons/fa"
+import Swal from "sweetalert2"
+import { useAuthStore } from "@/stores/auth"
+import { host } from "@/utils/constant"
 
 const Login = () => {
-  const router = useRouter();
+  const router = useRouter()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  });
+  })
 
   function handleChange(e) {
-    const { value, name } = e.target;
+    const { value, name } = e.target
     setFormData({
       ...formData,
       [name]: value,
-    });
+    })
   }
 
-  const { login } = useAuthStore();
+  const { login } = useAuthStore()
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     axios
       .post(`${host}/auth/login`, formData)
-      .then((res) => {
-        const { email } = formData;
-        const { access_token } = res.data.data;
+      .then(res => {
+        const { email } = formData
+        const { access_token, user } = res.data.data
         Swal.fire({
           icon: "success",
           title: "Success",
           text: "Berhasil Login",
-        });
-        console.log('respon',res.data)
-        login({ access_token, email });
-        router.push("/");
+        })
+        console.log("respon", res.data)
+        login({ access_token, email, user })
+        router.push("/")
       })
-      .catch((err) => {
+      .catch(err => {
         Swal.fire({
           icon: "error",
           title: "Failed",
           text: err?.response.data.message ?? "Login Gagal",
-        });
-      });
+        })
+      })
   }
   return (
     <div className="relative flex h-screen w-full items-center justify-center bg-red-500 bg-gradient-to-tl from-blue-500 via-green-500">
@@ -79,20 +79,17 @@ const Login = () => {
           required={true}
           onChange={handleChange}
         />
-        <SubmitButton
-          text="Login"
-          className="w-full rounded-md bg-blue-600 p-2 text-white"
-        />
+        <SubmitButton text="Login" className="w-full rounded-md bg-blue-600 p-2 text-white" />
         <p className="text-center text-sm text-black">
           Don&apos;t have an account{" "}
           <span className="cursor-pointer underline hover:text-blue-500">
-            <Link href={"/register"}>Register here</Link>
+            <Link href={"/auth/register"}>Register here</Link>
           </span>
           .
         </p>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

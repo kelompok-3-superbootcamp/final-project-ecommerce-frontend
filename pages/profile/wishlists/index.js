@@ -1,5 +1,4 @@
 import SideBar from "@/components/sideNavBar";
-import Cards from "@/components/card";
 import Wishlist from "@/components/wishlist";
 const Pembelian = () => {
     return (

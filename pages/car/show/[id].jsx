@@ -1,17 +1,20 @@
 import axios from "axios"
-// import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import Slider from "react-slick"
 import { IoMdColorPalette, IoIosSpeedometer } from "react-icons/io"
 import { GiGearStickPattern } from "react-icons/gi"
 import { FaLocationDot, FaCarOn, FaCalendar, FaHeart } from "react-icons/fa6"
+import { host } from "@/utils/constant"
+import { useAuthStore } from "@/stores/auth"
+import Swal from "sweetalert2"
 
 const Car = () => {
   const router = useRouter()
   const id = router.query.id
   const [carDetail, setCarDetail] = useState([])
   const [fetchStatus, setFetchStatus] = useState(true)
+  const { user } = useAuthStore()
   var settings = {
     dots: false,
     infinite: true,
@@ -51,7 +54,7 @@ const Car = () => {
     if (id) {
       if (fetchStatus === true) {
         axios
-          .get(`http://127.0.0.1:8000/api/cars/${id}`)
+          .get(`${host}/cars/${id}`)
           .then(response => {
             setCarDetail([response.data.data])
           })
@@ -62,6 +65,41 @@ const Car = () => {
       }
     }
   }, [fetchStatus, setFetchStatus, id])
+
+  const handleBuyNow = () => {
+    try {
+      axios
+        .post(
+          `${host}/orders`,
+          { car_id: id },
+          {
+            headers: { Authorization: "Bearer " + user.access_token },
+          },
+        )
+        .then(res => {
+          Swal.fire({
+            title: "Apakah kamu yakin?",
+            text: `Kamu akan membeli mobil ${carDetail[0]["name"]}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, pergi checkout!",
+          }).then(result => {
+            if (result.isConfirmed) {
+              handleCheckout(res.data.data.id)
+            }
+          })
+        })
+    } catch (error) {
+      console.error(error)
+      router.push(`/auth/login`)
+    }
+  }
+
+  const handleCheckout = id => {
+    router.push(`/checkout/${id}`)
+  }
 
   return (
     <div className="bg-slate-200">
@@ -86,8 +124,11 @@ const Car = () => {
                   <div className="flex">
                     <span className="title-font text-2xl font-medium text-gray-900">Rp.{res.price}</span>
                   </div>
-                  <div className="flex mt-5 justify-between">
-                    <button className="flex rounded border-0 bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 focus:outline-none">
+                  <div className="mt-5 flex justify-between">
+                    <button
+                      className="flex rounded border-0 bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 focus:outline-none"
+                      onClick={handleBuyNow}
+                    >
                       Beli sekarang
                     </button>
                     <button className="flex rounded border-0 bg-green-500 px-6 py-2 text-white hover:bg-green-600 focus:outline-none">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Cards from "./Cards"
 import axios from "axios"
 import Slider from "react-slick"
+import { host } from "@/utils/constant"
 
 export default function Grid() {
   const [newCars, setNewCars] = useState([])
@@ -48,7 +49,7 @@ export default function Grid() {
   useEffect(() => {
     if (fetchStatus === true) {
       axios
-        .get("http://127.0.0.1:8000/api/cars", { params: { condition: "baru" } })
+        .get(`${host}/cars`, { params: { condition: "baru" } })
         .then(response => {
           setNewCars([...response.data.data.data])
         })
@@ -56,7 +57,7 @@ export default function Grid() {
           console.error(error)
         })
       axios
-        .get("http://127.0.0.1:8000/api/cars", { params: { condition: "bekas" } })
+        .get(`${host}/cars`, { params: { condition: "bekas" } })
         .then(response => {
           setSecondCars([...response.data.data.data])
         })

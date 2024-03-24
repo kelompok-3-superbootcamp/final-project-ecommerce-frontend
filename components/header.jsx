@@ -6,6 +6,7 @@ import { Button } from 'flowbite-react';
 import { useAuthStore } from "@/stores/auth"
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export default function Header() {
   const { user, logout } = useAuthStore()
@@ -24,7 +25,7 @@ export default function Header() {
   return (
     <Navbar fluid style={{backgroundColor: '#01253D', color:"white"}}>
       <Navbar.Brand href="/home">
-        <img src="/sanbercar.jpg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
+        <Image src="/sanbercar.jpg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" width={50} height={30} />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">SanberCar</span>
       </Navbar.Brand>
       <div className="flex md:order-2">

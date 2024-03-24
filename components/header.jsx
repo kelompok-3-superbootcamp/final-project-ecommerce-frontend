@@ -49,15 +49,16 @@ export default function Header() {
           <Dropdown.Divider />
 
           <Dropdown.Item href='/profile/orders'>Status Penjualan</Dropdown.Item>
-          <Dropdown.Item href='/profile/Etalase'>etalase</Dropdown.Item>
+          <Dropdown.Item href='/profile/etalase'>Etalase</Dropdown.Item>
           <Dropdown.Item href='/profile/review'>Review toko mu</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={() => logOut()}>Log out</Dropdown.Item>
           </>
           : 
           <>
-            <Dropdown.Item href='/auth/login'>Login</Dropdown.Item>
-            <Dropdown.Item href='/auth/register'>Register</Dropdown.Item>
+            <Dropdown.Item href='/auth/login'>Login / Masuk</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item href='/auth/register'>Register / Daftar</Dropdown.Item>
           </>
           }
         </Dropdown>

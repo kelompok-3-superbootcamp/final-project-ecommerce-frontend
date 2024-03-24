@@ -2,14 +2,28 @@
 'use client';
 
 import { Table } from 'flowbite-react';
+import useSWR from "swr"
+import {useAuthStore} from "@/stores/auth"
+import { host } from '@/utils/constant';
+import { Pagination } from 'flowbite-react';
+import { useState } from "react";
+import { useSearchParams } from 'next/navigation'
+import { useRouter } from "next/router";
 import SideBar from '@/components/sideNavBar';
 
+const fetcher = ([url, header]) => fetch(`${host}${url}`, {headers: header}).then(res => res.json())
+
 export default function Etalase() {
+  const {user, logout} = useAuthStore()
+  let header = {Authorization: `Bearer ${user?.access_token}`}
+  const { data:cars, error:err1, isLoading:is1 } = useSWR([`/cars/based-on-seller`, header], fetcher)
+
   return (
     <div className='flex'>
     <SideBar></SideBar>
     <div className="overflow-x-auto w-full">
       <h1 className='m-6 text-2xl font-bold'>Daftar Penjualan Mobil Anda</h1>
+      {cars?.data?.length ?
       <Table hoverable>
         <Table.Head>
           <Table.HeadCell>Product name</Table.HeadCell>
@@ -74,7 +88,7 @@ export default function Etalase() {
             </Table.Cell>
           </Table.Row>
         </Table.Body>
-      </Table>
+      </Table> : <h1 className="ml-6">Etalase mu kosong, Jual Mobil mu sekarang juga</h1>}
     </div>
   </div>
   );

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#detail, #listcar {
+#detail, #listcar{
   background-color: #eceef3;
 }
 /* :root {

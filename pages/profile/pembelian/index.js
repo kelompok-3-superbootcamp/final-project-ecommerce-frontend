@@ -1,21 +1,59 @@
-import SideBar from "@/components/sideNavBar";
 
-const Pembelian = () => {
-    return (
-        <div className="flex items-center">
+'use client';
+
+import Link from 'next/link';
+import { Navbar } from 'flowbite-react';
+import SideBar from '@/components/sideNavBar';
+import { useState } from 'react';
+import { Card } from 'flowbite-react';
+
+export default function Pembelian() {
+  const [status, setStatus] = useState('pending')
+  return (
+    <div className='flex'>
+
         <SideBar></SideBar>
-        <div className="p-8 w-full items-center justify-center space-y-2">
-            <h1>Status Pembelian</h1>
-            <hr></hr>
-            <div className="flex space-between">
-                <h1>Belum Bayar</h1>
-                <h1>Dikemas</h1>
-                <h1>Dikirim</h1>
-                <h1>Beri Penilaian</h1>
-            </div>
-        </div>
-        </div>
-    )
-}
+    
+        <Card className='m-auto my-8'>
+    <Navbar fluid rounded className='items-center mx-auto mt-8'>
+      <Navbar.Toggle />
+      <Navbar.Collapse>
+        <Navbar.Link className='cursor-pointer'>
+          Menunggu Pembayaran
+        </Navbar.Link>
+        <Navbar.Link className='cursor-pointer'>
+          Di Kirim (Towing)
+        </Navbar.Link>
+        <Navbar.Link className='cursor-pointer'>Pembayaran Gagal</Navbar.Link>
+        <Navbar.Link className='cursor-pointer'>Pembelian Dibatalkan</Navbar.Link>
+        <Navbar.Link className='cursor-pointer' onClick={() => setStatus('waitin')}>Beri Penilaian / Review</Navbar.Link>
+      </Navbar.Collapse>
+    </Navbar>
+    <Card className="m-auto" imgSrc={'/brio.jpeg'} horizontal>
+      <Link href={"/car/show/1"}>
+      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Honda Brio
+      </h5>
+      <p className="font-normal text-gray-700 dark:text-gray-400">
+        <br></br>
+        Say Carmudi.co.id for the best deal MAZDA 2 S AT 2011 HIJAU KM PAJAK PANJANG KM RENDAH
 
-export default Pembelian
+      </p>
+      </Link>
+    </Card>
+    <Card className="m-auto" imgSrc={'/brio.jpeg'} horizontal>
+      <Link href={"/car/show/1"}>
+      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Honda Brio
+      </h5>
+      <p className="font-normal text-gray-700 dark:text-gray-400">
+        <br></br>
+        Say Carmudi.co.id for the best deal MAZDA 2 S AT 2011 HIJAU KM PAJAK PANJANG KM RENDAH
+
+      </p>
+      </Link>
+    </Card>
+    </Card>
+    </div>
+  );
+}

@@ -3,20 +3,18 @@
 
 import { Card } from 'flowbite-react';
 import Link from 'next/link';
+import { Rate } from 'antd';
 
-export default function ListCar({image_url, merk, description}) {
+export default function ReviewCard({username, rating, description}) {
   return (
-    <Card className="" imgSrc={image_url} horizontal>
-      <Link href={"/car/show/1"}>
+    <Card className="m-auto w-full" horizontal>
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        {merk}
+      {username}
       </h5>
+      <Rate disabled defaultValue={4} />
       <p className="font-normal text-gray-700 dark:text-gray-400">
         {description}<br></br>
-        {/* Say Carmudi.co.id for the best deal MAZDA 2 S AT 2011 HIJAU KM PAJAK PANJANG KM RENDAH */}
-
       </p>
-      </Link>
     </Card>
   );
 }

@@ -8,6 +8,7 @@ import { FaArrowLeft } from "react-icons/fa"
 import Swal from "sweetalert2"
 import { useAuthStore } from "@/stores/auth"
 import { host } from "@/utils/constant"
+import Cookies from "js-cookie"
 
 const Login = () => {
   const router = useRouter()
@@ -40,8 +41,12 @@ const Login = () => {
           text: "Berhasil Login",
         })
         console.log("respon", res.data)
-        login({ access_token, email, name, role, user })
-        router.push("/home")
+        login({ access_token, email, user })
+
+        Cookies.set("access_token", access_token)
+        Cookies.set("user", JSON.stringify(user))
+
+        router.push("/")
       })
       .catch(err => {
         Swal.fire({

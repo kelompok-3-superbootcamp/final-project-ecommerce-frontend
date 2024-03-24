@@ -1,55 +1,49 @@
 import { useAuthStore } from "@/stores/auth"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
-import { Button } from "flowbite-react"
+import { Button, Input, Space } from "antd"
 import { host } from "@/utils/constant"
 import axios from "axios"
 import Swal from "sweetalert2"
+import { useState } from "react"
 
-const Checkout = () => {
+export async function getServerSideProps(ctx) {
+  const responseOrder = await axios.get(`${host}/orders/${ctx.query.id}`)
+  const responseCarDetail = await axios.get(`${host}/cars/${responseOrder.data.data.car_id}`)
+
+  return {
+    props: {
+      orderDetail: responseOrder.data.data,
+      carDetail: responseCarDetail.data.data,
+    },
+  }
+}
+
+const Checkout = ({ orderDetail, carDetail }) => {
   const router = useRouter()
   const { id } = router.query
-  const [orderData, setOrderData] = useState({})
-  const [carDetail, setCarDetail] = useState(null)
   const { user } = useAuthStore()
 
-  useEffect(() => {
-    if (!id) {
-      return
-    }
-    axios
-      .get(`${host}/orders/${id}`, {
-        headers: { Authorization: "Bearer " + user.access_token },
-      })
-      .then(res => {
-        setTest(true)
-        setOrderData(res.data.data)
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  }, [id])
+  const [totalPrice, setTotalPrice] = useState(carDetail.price)
+  const [voucherErr, setVoucherErr] = useState(null)
 
-  useEffect(() => {
-    if (orderData.id) {
-      axios
-        .get(`${host}/cars/${orderData.car_id}`)
-        .then(res => {
-          setCarDetail(res.data.data)
-        })
-        .catch(error => {
-          console.error(error)
-        })
-    }
-  }, [orderData.id])
+  const [voucherCode, setVoucherCode] = useState("")
+  const [voucherId, setVoucherId] = useState(null)
+
+  const [isVerify, setIsVerify] = useState(false)
 
   const handleBuy = () => {
     axios
-      .post(`${host}/orders/checkout/${id}`, 
-      {},
-      {
-        headers: { Authorization: "Bearer " + user.access_token },
-      })
+      .post(
+        `${host}/orders/checkout/${id}`,
+        voucherId
+          ? {
+            voucher_id: voucherId,
+          }
+          : {},
+        {
+          headers: { Authorization: "Bearer " + user.access_token },
+        },
+      )
       .then(res => {
         Swal.fire({
           title: "Apakah kamu yakin?",
@@ -66,8 +60,35 @@ const Checkout = () => {
         })
       })
       .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Failed",
+          text: error?.response.data.message ?? "Checkout gagal",
+        })
         console.error(error)
       })
+  }
+
+  const handleVerifyVoucher = async () => {
+    setIsVerify(true)
+
+    try {
+      const response = await axios.post(`${host}/vouchers/verify`, {
+        voucher_code: voucherCode,
+        order_id: orderDetail.id,
+      })
+
+      console.log(response.data.data)
+      setVoucherErr(null)
+
+      setVoucherId(response.data.data.voucher.id)
+      setTotalPrice(response.data.data.total_price)
+    } catch (err) {
+      setVoucherErr(err.response.data.message ?? "Voucher error")
+      console.log(err)
+    }
+
+    setIsVerify(false)
   }
 
   return (
@@ -141,8 +162,31 @@ const Checkout = () => {
               <p>{carDetail?.stock}</p>
             </div>
             <hr></hr>
-            {/* <p>Voucher</p>
-            <hr></hr> */}
+            <div className="py-4">
+              <div className="mb-4">
+                <h1 className="text-lg font-bold">Voucher</h1>
+                <p className="text-sm text-black/60">Masukan kode voucher untuk mendapatkan potongan harga</p>
+              </div>
+              <Space.Compact
+                style={{
+                  width: "100%",
+                }}
+              >
+                <Input value={voucherCode} placeholder="Voucher Code" onChange={e => setVoucherCode(e.target.value)} />
+                <Button disabled={isVerify} type="primary" onClick={handleVerifyVoucher}>
+                  {isVerify ? "Verifying.." : "Verify"}
+                </Button>
+              </Space.Compact>
+              {voucherErr && <p className="mt-2 text-sm text-red-600">{voucherErr}</p>}
+            </div>
+
+            <div className="flex items-start justify-between">
+              <p>Total Harga</p>
+              <div>
+                {voucherId && <p className="text-red-600 line-through">Rp.{orderDetail.total_price}</p>}
+                <p className="font-bold">Rp.{totalPrice}</p>
+              </div>
+            </div>
           </figcaption>
           <Button type="primary" className="mt-6" onClick={() => handleBuy()}>
             Beli

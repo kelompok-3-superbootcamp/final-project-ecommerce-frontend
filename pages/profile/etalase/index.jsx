@@ -1,13 +1,11 @@
-
 'use client';
 
 import { Table } from 'flowbite-react';
-import SideBar from '@/components/sideNavBar';
+import LayoutProfile from '@/components/LayoutProfile';
 
 export default function Etalase() {
   return (
-    <div className='flex'>
-    <SideBar></SideBar>
+    <LayoutProfile>
     <div className="overflow-x-auto w-full">
       <h1 className='m-6 text-2xl font-bold'>Daftar Penjualan Mobil Anda</h1>
       <Table hoverable>
@@ -76,6 +74,6 @@ export default function Etalase() {
         </Table.Body>
       </Table>
     </div>
-  </div>
+    </LayoutProfile>
   );
 }

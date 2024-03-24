@@ -7,7 +7,7 @@ import { Rate } from 'antd';
 
 export default function ReviewCard({username, rating, description}) {
   return (
-    <Card className="m-auto" horizontal>
+    <Card className="m-auto w-full" horizontal>
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
       {username}
       </h5>

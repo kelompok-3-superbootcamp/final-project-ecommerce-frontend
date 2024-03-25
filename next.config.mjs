@@ -40,7 +40,7 @@ const nextConfig = {
     "rc-util",
   ],
   images: {
-    domains: ['via.placeholder.com']
+    domains: ['via.placeholder.com', 'utfs.io']
   }
 
 };

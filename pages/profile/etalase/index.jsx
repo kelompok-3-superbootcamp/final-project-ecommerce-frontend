@@ -20,50 +20,55 @@ export default function Etalase() {
   const handleDelete = (id) => {
     axios.delete(`${host}/cars/${id}`, {headers: header}).then((res)=>{mutate()})
   }
+  const router = useRouter()
+  const toProd = (id) => {
+    router.push(`/car/show/${id}`)
+  }
 
   return (
     <LayoutProfile>
-    <div className="overflow-x-auto w-full">
-      <h1 className='m-6 text-2xl font-bold'>Daftar Penjualan Mobil Anda</h1>
+    <div className="w-11/12">
+      <h1 className='m-6 ml-16 text-2xl font-bold'>Daftar Penjualan Mobil Anda</h1>
       {cars?.data?.length ?
-      <Table hoverable className='mb-8'>
+      <Table hoverable className='mb-8 ml-16'>
         <Table.Head>
-          <Table.HeadCell>No.</Table.HeadCell>
-          <Table.HeadCell>Merk</Table.HeadCell>
-          <Table.HeadCell>Tahun</Table.HeadCell>
-          <Table.HeadCell>Kondisi</Table.HeadCell>
-          <Table.HeadCell>Kilometer</Table.HeadCell>
-          <Table.HeadCell>Transmisi</Table.HeadCell>
-          <Table.HeadCell>Harga</Table.HeadCell>
-          <Table.HeadCell>
+          <Table.HeadCell className='p-3'>No.</Table.HeadCell>
+          <Table.HeadCell >Merk</Table.HeadCell>
+          <Table.HeadCell >Tahun</Table.HeadCell>
+          <Table.HeadCell >Kondisi</Table.HeadCell>
+          <Table.HeadCell >Kilometer</Table.HeadCell>
+          <Table.HeadCell >Transmisi</Table.HeadCell>
+          <Table.HeadCell >Harga</Table.HeadCell>
+          <Table.HeadCell >
             <span className="sr-only">Edit</span>
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
           { cars?.data?.map((car, index) => (
-          <Table.Row key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+          <Table.Row onClick={()=>toProd(car.id)} key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800 cursor-pointer">
             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
               {index+1}
             </Table.Cell>
-            <Table.Cell>{car.brand_name} {car.name}</Table.Cell>
-            <Table.Cell>{car.year}</Table.Cell>
-            <Table.Cell>{car.condition}</Table.Cell>
-            <Table.Cell>{car.km}</Table.Cell>
-            <Table.Cell>{car.transmission}</Table.Cell>
-            <Table.Cell>{car.price}</Table.Cell>
-            <Table.Cell>
+            <Table.Cell class="">{car.brand_name} {car.name}</Table.Cell>
+            <Table.Cell >{car.year}</Table.Cell>
+            <Table.Cell >{car.condition}</Table.Cell>
+            <Table.Cell >{car.km}</Table.Cell>
+            <Table.Cell >{car.transmission}</Table.Cell>
+            <Table.Cell >{car.price}</Table.Cell>
+            <Table.Cell >
               <a href={`/car/edit/${car.id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
                 edit
               </a>
             </Table.Cell>
-            <Table.Cell>
+            <Table.Cell >
+          
               <a onClick={()=>handleDelete(car.id)} className="cursor-pointer font-medium text-cyan-600 hover:underline dark:text-cyan-500">
                 hapus
               </a>
             </Table.Cell>
           </Table.Row>))}
         </Table.Body>
-      </Table> : <h1 className="ml-6">Etalase mu kosong, Jual Mobil mu sekarang juga</h1>}
+      </Table> : <h1 className="ml-6 ml-16">Etalase mu kosong, Jual Mobil mu sekarang juga</h1>}
     </div>
     </LayoutProfile>
   );

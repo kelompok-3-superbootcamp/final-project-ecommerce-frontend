@@ -18,7 +18,7 @@ const Orderan = () => {
   return (
     <LayoutProfile>
       <div className="w-full overflow-x-auto">
-        <h1 className="m-6 text-2xl font-bold">Daftar Pesanan Masuk</h1>
+        <h1 className="m-6 ml-16 text-2xl font-bold">Daftar Pesanan Masuk</h1>
         {orders?.data.length ?
         <Table hoverable>
           <Table.Head>
@@ -57,7 +57,7 @@ const Orderan = () => {
             </Table.Row>
           </Table.Body>
         </Table>
-        : <h1 className="ml-6">Belum ada pesanan masuk</h1>}
+        : <h1 className="ml-16">Belum ada pesanan masuk</h1>}
       </div>
     </LayoutProfile>
   )

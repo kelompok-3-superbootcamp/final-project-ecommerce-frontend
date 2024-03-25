@@ -58,7 +58,7 @@ export default function Header() {
         <Dropdown arrowIcon={false} inline label={<Avatar alt="User settings" img="/download.png" rounded />}>
           {user && (
             <Dropdown.Header>
-              <span className="block text-sm">{user.name}</span>
+              <span className="block text-sm">{user.user.name}</span>
               <span className="block truncate text-sm font-medium">{user.email}</span>
             </Dropdown.Header>
           )}

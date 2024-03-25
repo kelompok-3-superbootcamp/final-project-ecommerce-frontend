@@ -6,3 +6,50 @@
 #listcar {
   background-color: #eceef3;
 }
+
+/* spinner */
+@keyframes ldio-e6y9orkgs95 {
+  0%,
+  100% {
+    animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.55);
+  }
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 108px);
+    animation-timing-function: cubic-bezier(0, 0.45, 0.55, 0.9);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.ldio-e6y9orkgs95 div {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #1677ff;
+  left: 74px;
+  top: 20px;
+  animation: ldio-e6y9orkgs95 1s linear infinite;
+}
+.loadingio-spinner-ball-44rqpy5q63x {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  background: #ffffff;
+}
+.ldio-e6y9orkgs95 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-e6y9orkgs95 div {
+  box-sizing: content-box;
+}

@@ -14,6 +14,7 @@ import { host } from "@/utils/constant"
 import { useAuthStore } from "@/stores/auth"
 import Swal from "sweetalert2"
 import axios from "axios"
+import { Show } from "@/utils/Show"
 
 const { Header, Sider, Content, Footer } = Layout
 
@@ -26,7 +27,6 @@ export const DashLayout = ({ children }) => {
   const [path, setPath] = useState("")
   const [breadcrumb, setBreadcrumb] = useState([])
   const { user, logout } = useAuthStore()
-  console.log("user", user)
   const router = useRouter()
 
   const menus = [
@@ -44,11 +44,6 @@ export const DashLayout = ({ children }) => {
       key: "voucher",
       icon: <BiSolidDiscount />,
       label: <Link href={"/dashboard/voucher"}>Voucher</Link>,
-    },
-    {
-      key: "review",
-      icon: <MdReviews />,
-      label: <Link href={"/dashboard/review"}>Ulasan</Link>,
     },
     {
       type: "group",
@@ -182,12 +177,14 @@ export const DashLayout = ({ children }) => {
               height: 64,
             }}
           />
-          <Dropdown menu={{ items }} placement="bottomRight">
-            <Space className="!cursor-pointer">
-              Username
-              <CaretDownOutlined />
-            </Space>
-          </Dropdown>
+          {user?.access_token && (
+            <Dropdown menu={{ items }} placement="bottomRight">
+              <Space className="!cursor-pointer">
+                Username
+                <CaretDownOutlined />
+              </Space>
+            </Dropdown>
+          )}
         </Header>
         <Breadcrumb className="!pl-8 !pt-6 capitalize" separator=">" items={breadcrumb} />
         <Content

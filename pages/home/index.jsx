@@ -1,15 +1,15 @@
 "use client"
 
-import Slider from '@/components/slider';
-import Grid from '@/components/Grid';
+import Slider from "@/components/slider"
+import Grid from "@/components/grid"
 
 const Home = () => {
-    return (
-        <>
-            <Slider />
-            <Grid />
-        </>
-    );
-    }
+  return (
+    <>
+      <Slider />
+      <Grid />
+    </>
+  )
+}
 
 export default Home

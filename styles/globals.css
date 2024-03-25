@@ -53,3 +53,12 @@
 .ldio-e6y9orkgs95 div {
   box-sizing: content-box;
 }
+
+.star-container {
+  display: flex;
+  //font-size: 24px; /* ukuran bintang */
+}
+
+.star {
+  color: gold; /* warna bintang */
+}

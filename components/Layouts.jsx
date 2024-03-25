@@ -65,7 +65,7 @@ export const DashLayout = ({ children }) => {
 
   const handleLogout = () => {
     axios
-      .post(`${host}/auth/logout`, {}, { header: { Authorization: user.access_token } })
+      .post(`${host}/auth/logout`, {}, { headers: { Authorization: `Bearer ${user.access_token}` } })
       .then(res => {
         Swal.fire({
           icon: "success",

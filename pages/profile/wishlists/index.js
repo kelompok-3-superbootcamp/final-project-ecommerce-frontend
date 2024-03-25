@@ -7,7 +7,7 @@ const Wishlists = () => {
         <LayoutProfile>
             <div className="flex">
                 <div className="p-8 w-full items-center justify-center space-y-2">
-                    <h1 className="font-bold text-4xl mb-8">Daftar Wishlists</h1>
+                    <h1 className="font-bold text-4xl mb-8 ml-6">Daftar Wishlists</h1>
                     <hr></hr>
                     <Wishlist></Wishlist>
                 </div>

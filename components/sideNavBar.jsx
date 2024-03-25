@@ -33,9 +33,6 @@ export default function SideBar() {
           <Sidebar.Item href="/profile/review" icon={HiChartPie}>
             Review Toko Mu
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiArrowSmRight}>
-            Sign In
-          </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiTable}>
             Log Out
           </Sidebar.Item>

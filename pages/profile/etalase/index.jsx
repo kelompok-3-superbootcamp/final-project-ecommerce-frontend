@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Table } from 'flowbite-react';
@@ -10,7 +9,7 @@ import { useState } from "react";
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from "next/router";
 import axios from 'axios';
-import SideBar from '@/components/sideNavBar';
+import LayoutProfile from '@/components/LayoutProfile';
 
 const fetcher = ([url, header]) => fetch(`${host}${url}`, {headers: header}).then(res => res.json())
 
@@ -23,8 +22,7 @@ export default function Etalase() {
   }
 
   return (
-    <div className='flex'>
-    <SideBar></SideBar>
+    <LayoutProfile>
     <div className="overflow-x-auto w-full">
       <h1 className='m-6 text-2xl font-bold'>Daftar Penjualan Mobil Anda</h1>
       {cars?.data?.length ?
@@ -67,6 +65,6 @@ export default function Etalase() {
         </Table.Body>
       </Table> : <h1 className="ml-6">Etalase mu kosong, Jual Mobil mu sekarang juga</h1>}
     </div>
-  </div>
+    </LayoutProfile>
   );
 }

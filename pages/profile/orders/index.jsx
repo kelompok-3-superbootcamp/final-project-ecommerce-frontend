@@ -2,11 +2,11 @@ import { Table } from "flowbite-react"
 import useSWR from "swr"
 import {useAuthStore} from "@/stores/auth"
 import { host } from '@/utils/constant';
-import { Pagination } from 'flowbite-react';
+import { Pagination } from "flowbite-react"
+import LayoutProfile from "@/components/LayoutProfile"
 import { useState } from "react";
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from "next/router";
-import SideBar from "@/components/sideNavBar"
 
 const fetcher = ([url, header]) => fetch(`${host}${url}`, {headers: header}).then(res => res.json())
 
@@ -16,8 +16,7 @@ const Orderan = () => {
   const { data:orders, error:err1, isLoading:is1 } = useSWR([`/orders/seller`, header], fetcher)
 
   return (
-    <div className="flex">
-      <SideBar></SideBar>
+    <LayoutProfile>
       <div className="w-full overflow-x-auto">
         <h1 className="m-6 text-2xl font-bold">Daftar Pesanan Masuk</h1>
         {orders?.data.length ?
@@ -60,7 +59,7 @@ const Orderan = () => {
         </Table>
         : <h1 className="ml-6">Belum ada pesanan masuk</h1>}
       </div>
-    </div>
+    </LayoutProfile>
   )
 }
 

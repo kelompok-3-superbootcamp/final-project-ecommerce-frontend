@@ -54,7 +54,7 @@ export default function Etalase() {
             <Table.Cell >{car.condition}</Table.Cell>
             <Table.Cell >{car.km}</Table.Cell>
             <Table.Cell >{car.transmission}</Table.Cell>
-            <Table.Cell >{car.price}</Table.Cell>
+            <Table.Cell >Rp {car.price.toLocaleString()}</Table.Cell>
             <Table.Cell >
               <a href={`/car/edit/${car.id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
                 edit
@@ -68,7 +68,7 @@ export default function Etalase() {
             </Table.Cell>
           </Table.Row>))}
         </Table.Body>
-      </Table> : <h1 className="ml-6 ml-16">Etalase mu kosong, Jual Mobil mu sekarang juga</h1>}
+      </Table> : <h1 className="ml-16">Etalase mu kosong, Jual Mobil mu sekarang juga</h1>}
     </div>
     </LayoutProfile>
   );

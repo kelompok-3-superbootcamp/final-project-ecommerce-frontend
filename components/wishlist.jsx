@@ -99,18 +99,6 @@ export default function Wishlist(){
         </Table.Body>
       </Table> : <h1 className="ml-6 ml-16">Tambahkan Wishlist Mu Sekarang</h1>}
     </div>
-        {/* <div className="grid grid-cols-4 gap-4 p-10">
-            {cars.slice(0,4).map((car, index) => (
-                <Cards imageUrl={car} merk={merk} description={desc} key={index}></Cards>
-            ))}
-        </div>
-        <div className="grid grid-cols-4 gap-4 p-10">
-            {cars.slice(4,6).map((car, index) => (
-                <div key={index}>
-                   <Cards imageUrl={car} merk={merk} description={desc} />
-                </div>
-            ))}
-        </div> */}
         </>
     )
 }

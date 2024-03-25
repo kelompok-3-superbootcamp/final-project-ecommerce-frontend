@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 export default function ListCar({
+  id,
   km,
   transmission,
   location,
@@ -18,7 +19,7 @@ export default function ListCar({
   condition
 }) {
   return (
-    <Link href={"/car/show/1"}>
+    <Link href={`/car/show/${id}`}>
       <div className="rounded-t-lg max-h-56 bg-white px-6 pt-6 flex h-full">
         <img className="rounded-lg max-h-52" src={image_url} alt="gambar" width={180} height={10}/>
         <div className="text-wrap w-full px-3 items-center">

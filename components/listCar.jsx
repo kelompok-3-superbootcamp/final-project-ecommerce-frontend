@@ -31,13 +31,13 @@ export default function ListCar({
           <br></br>
           warna {color}
           <br></br>
-          {km.toLocaleString()} km <br></br>
+          {km?.toLocaleString()} km <br></br>
           {description}
           <br></br>
           {/* Say Carmudi.co.id for the best deal MAZDA 2 S AT 2011 HIJAU KM PAJAK PANJANG KM RENDAH */}
         </p>
         <div className="flex mt-2">
-          <h1 className="w-11/12 text-lg font-bold">Rp {price.toLocaleString()}</h1>
+          <h1 className="w-11/12 text-lg font-bold">Rp {price?.toLocaleString()}</h1>
         </div>
         </div>
       </div>

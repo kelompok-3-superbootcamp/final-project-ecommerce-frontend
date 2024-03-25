@@ -17,7 +17,7 @@ const { uploadFiles } = generateReactHelpers()
 
 const fetcher = ([url, header]) => fetch(`${host}${url}`, { headers: header }).then(res => res.json())
 
-export default function Form() {
+export default function Form({id}) {
   const router = useRouter()
   const [file, setFile] = useState([])
   const [beginUpload, setBeginUpload] = useState(false)
@@ -40,8 +40,11 @@ export default function Form() {
   let header = { Authorization: `Bearer ${user?.access_token}` }
   const { data: brands, error: err1, isLoading: is1 } = useSWR(["/brands", header], fetcher)
   const { data: types, error: err2, isLoading: is2 } = useSWR(["/types", header], fetcher)
+  const { data: car, error: err3, isLoading: is3 } = useSWR([`/cars/${id}`, header], fetcher)
+  console.log(`mobil:${id}:`, car)
   const handleSubmit = async e => {
     e.preventDefault()
+    console.log('file nya:', file)
     if (!file) return alert("File kosong")
 
     const formData = new FormData()
@@ -50,13 +53,17 @@ export default function Form() {
     setBeginUpload(true)
 
     try {
-      const uploadResponse = await uploadFiles("imageUploader", {
-        files: [file],
-      })
+      let uploadResponse
+      let url
+      if (file.length) {
+        uploadResponse = await uploadFiles("imageUploader", {
+          files: [file],
+        }) 
+
+        url = uploadResponse[0]?.url
+      }
 
       console.log(uploadResponse) // Array
-
-      var url = uploadResponse[0].url
 
       let {
         brand_id: { value: brand_id },
@@ -91,8 +98,9 @@ export default function Form() {
 
       console.log("bodi", body)
 
-      axios
-        .post(`${host}/cars`, body, { headers: header })
+      if (id) {
+        axios
+        .put(`${host}/cars/${id}`, body, { headers: header })
         .then(res => {
           console.log("hai :", res)
           setBeginUpload(false)
@@ -106,6 +114,23 @@ export default function Form() {
         .catch(err => {
           console.log("erorny:", err)
         })
+      } else {
+        axios
+        .post(`${host}/cars`, body, { headers: header })
+        .then(res => {
+          console.log("hai :", res)
+          setBeginUpload(false)
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Selamat! Mobil mu berhasil di Post",
+          });
+          router.push("/home")
+        })
+        .catch(err => {
+          console.log("erorny:", err)
+        }) 
+      }
 
       // upload ke database, si `url` nya...
     } catch (err) {
@@ -129,19 +154,19 @@ export default function Form() {
         <div className="mb-2 block">
           <Label htmlFor="base" value="Merk" />
         </div>
-        <TextInput required id="base" type="text" sizing="md" name="name" />
+        <TextInput required id="base" type="text" sizing="md" name="name" defaultValue={car?.data?.name} placeholder={car?.data?.name}/>
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="base" value="Tahun" />
         </div>
-        <TextInput required id="base" type="number" sizing="md" name="year" />
+        <TextInput required id="base" type="number" sizing="md" name="year" defaultValue={car?.data?.year} placeholder={car?.data?.year}/>
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="base" value="Harga" />
         </div>
-        <TextInput required id="base" type="number" sizing="md" name="price" />
+        <TextInput required id="base" type="number" sizing="md" name="price" defaultValue={car?.data?.price} placeholder={car?.data?.price}/>
       </div>
       <div className="mb-2 block">
         <Label htmlFor="brand" value="Pilih Transmisi" />
@@ -161,19 +186,19 @@ export default function Form() {
         <div className="mb-2 block">
           <Label htmlFor="base" value="Kilometer" />
         </div>
-        <TextInput required id="base" type="number" sizing="md" name="km" />
+        <TextInput required id="base" type="number" sizing="md" name="km" defaultValue={car?.data?.km} placeholder={car?.data?.km}/>
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="base" value="Warna" />
         </div>
-        <TextInput required id="base" type="text" sizing="md" name="color" />
+        <TextInput required id="base" type="text" sizing="md" name="color" defaultValue={car?.data?.color} placeholder={car?.data?.color}/>
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="base" value="Lokasi Mobil" />
         </div>
-        <TextInput required id="base" type="text" sizing="md" name="location" />
+        <TextInput required id="base" type="text" sizing="md" name="location" defaultValue={car?.data?.location} placeholder={car?.data?.location}/>
       </div>
       <div className="mb-2 block">
         <Label htmlFor="type" value="Pilih Tipe Mobil" />
@@ -189,24 +214,28 @@ export default function Form() {
         <div className="mb-2 block">
           <Label htmlFor="base" value="Stok" />
         </div>
-        <TextInput required id="base" type="number" sizing="md" name="stock" />
+        <TextInput required id="base" type="number" sizing="md" name="stock" defaultValue={car?.data?.stock} placeholder={car?.data?.stock}/>
       </div>
       <div className="mb-2 block">
         <Label htmlFor="description" value="Isi deskripsi mobil" />
       </div>
-      <Textarea required id="description" placeholder="Isi deskripsi mobil" rows={4} name="description" />
+      <Textarea required id="description" rows={4} name="description" defaultValue={car?.data?.name} placeholder={car ? car?.data?.name : "Isi Deskripsi Mobil..."}/>
       <div className="mb-2 block">
         <Label htmlFor="file" value="Upload Gambar Mobil" />
       </div>
+      {car ? 
+      <div className="flex">
+      <input type="file" multiple={false} accept="image/*" onChange={changeHandler} />
+    </div> :
       <div className="flex">
         <input required type="file" multiple={false} accept="image/*" onChange={changeHandler} />
-      </div>
+      </div>}
 
       <input
         disabled={beginUpload ? true : false}
         className="cursor-pointer rounded bg-slate-900 p-2 font-bold text-white"
         type="submit"
-        value={beginUpload ? "Loading..." : "Jual Sekarang"}
+        value={beginUpload ? "Loading..." : (car ? "Update" : "Jual Sekarang")}
       />
     </form>
   )

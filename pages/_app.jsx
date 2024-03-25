@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <ConfigProvider>
         <Show>
-          <Show.When isTrue={!pathname.includes("dashboard")}>
+          <Show.When isTrue={!pathname?.includes("dashboard")}>
             <Header />
             <Component {...pageProps} />
             <Footers />

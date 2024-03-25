@@ -78,6 +78,7 @@ const Product = () => {
     setWishlists(newWishlists)
   }
   const unsave = (index, id) => {
+    axios.delete(`${host}/wishlists/${id}`, {headers: header})
     let newWishlists = [...wishlists]
     newWishlists[index] = 0
     setWishlists(newWishlists)

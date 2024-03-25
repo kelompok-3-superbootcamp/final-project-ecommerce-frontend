@@ -625,7 +625,7 @@ const Product = () => {
               </div>
             </Col>
           </Row>
-          <div className="mt-20 overflow-x-auto">
+          <div className="mt-4 overflow-x-auto">
             <Table striped>
               <Table.Head>
                 <Table.HeadCell>No</Table.HeadCell>

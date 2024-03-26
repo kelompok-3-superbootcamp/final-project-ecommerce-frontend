@@ -2,9 +2,9 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { FaHeart } from "react-icons/fa"
 
-export default function Cards({ carId, carImage, carName, carPrice }) {
+export default function Cards({ carId, carImage, carName, carPrice, carBrand }) {
+
   return (
     <Link href={`/car/show/${carId}`} key={carId}>
       <div className="p-4" key={carId}>
@@ -21,10 +21,11 @@ export default function Cards({ carId, carImage, carName, carPrice }) {
             />
           </div>
           <div className="p-4">
-            <h2 className="mb-2 text-lg font-bold text-gray-900">{carName}</h2>
+            <h2 className="mb-2 text-lg font-bold text-gray-900">
+              {carBrand} {carName}
+            </h2>
             <div className="flex flex-wrap justify-between">
               <p className="text-gray-700">Rp.{carPrice}</p>
-              <FaHeart className="text-red-500" />
             </div>
           </div>
         </div>

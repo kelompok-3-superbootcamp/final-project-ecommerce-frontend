@@ -1,5 +1,5 @@
-import { SubmitButton } from "@/components/buttons"
-import { EmailInput, PasswordInput } from "@/components/forms"
+import { SubmitButton } from "@/components/SubmitButton"
+import { EmailInput, PasswordInput } from "@/components/Forms"
 import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/router"

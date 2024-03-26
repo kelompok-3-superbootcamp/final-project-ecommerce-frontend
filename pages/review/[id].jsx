@@ -1,11 +1,10 @@
 
 'use client';
 
-import { Label, TextInput, Select, Textarea, FileInput } from 'flowbite-react';
+import { Label, Textarea } from 'flowbite-react';
 import { Button } from 'flowbite-react';
 import { Rate } from 'antd';
-import ListCar from '@/components/listCar';
-import Cards from '@/components/card';
+import ListCar from '@/components/ListCar';
 export default function Review() {
   return (
     <div className="flex max-w-xl flex-col gap-4 m-auto p-8">

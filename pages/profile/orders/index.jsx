@@ -35,14 +35,14 @@ const Orderan = () => {
             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
               {index+1}
             </Table.Cell>
-            <Table.Cell class="">{car.brand_name} {car.name}</Table.Cell>
+            <Table.Cell className="">{car.brand_name} {car.name}</Table.Cell>
             <Table.Cell onClick={()=>toProd(car.id)}>{car.condition}</Table.Cell>
             <Table.Cell onClick={()=>toProd(car.id)}>{car.transmission}</Table.Cell>
             <Table.Cell onClick={()=>toProd(car.id)}>Rp {car.price.toLocaleString()}</Table.Cell>
             <Table.Cell onClick={()=>toProd(car.id)}>{car.payment_status}</Table.Cell>            
           </Table.Row>))}
         </Table.Body>
-      </Table> : <h1 className="ml-6 ml-16">Tambahkan Wishlist Mu Sekarang</h1>}
+      </Table> : <h1 className="ml-16">Tambahkan Wishlist Mu Sekarang</h1>}
     </div>
     </LayoutProfile>
   )

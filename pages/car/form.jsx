@@ -235,7 +235,7 @@ export default function Form({id}) {
         disabled={beginUpload ? true : false}
         className="cursor-pointer rounded bg-slate-900 p-2 font-bold text-white"
         type="submit"
-        value={beginUpload ? "Loading..." : (car ? "Update" : "Jual Sekarang")}
+        value={beginUpload ? "Loading..." : (id ? "Update" : "Jual Sekarang")}
       />
     </form>
   )

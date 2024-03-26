@@ -1,6 +1,5 @@
-import SideBar from "@/components/sideNavBar";
-import Wishlist from "@/components/wishlist";
-import LayoutProfile from "../../../components/LayoutProfile";
+import Wishlist from "@/components/Wishlist";
+import LayoutProfile from "@/components/LayoutProfile";
 
 const Wishlists = () => {
     return (

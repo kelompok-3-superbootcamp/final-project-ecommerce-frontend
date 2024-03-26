@@ -3,12 +3,10 @@
 import { Sidebar } from "flowbite-react"
 import Link from "next/link"
 import {
-  HiArrowSmRight,
   HiChartPie,
   HiHeart,
   HiInbox,
   HiShoppingBag,
-  HiTable,
   HiUser,
   HiViewBoards,
 } from "react-icons/hi"

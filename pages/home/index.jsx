@@ -1,7 +1,7 @@
 "use client"
 
-import Slider from "@/components/slider"
-import Grid from "@/components/grid"
+import Slider from '@/components/Slider';
+import Grid from '@/components/Grid';
 
 const Home = () => {
   return (

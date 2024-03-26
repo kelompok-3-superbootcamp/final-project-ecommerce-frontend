@@ -75,9 +75,17 @@ export default function UserProfile() {
             />
             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{dataUser?.name}</h5>
             <span className="flex text-sm text-gray-500 dark:text-gray-400">
-              <StarRating rating={averageStar(dataReview)} />
+              {
+              (averageStar(dataReview) == NaN) ? (
+                <StarRating rating={averageStar(dataReview)} />
+              ) : ""
+            }
             </span>
-            <h1>{averageStar(dataReview)}</h1>
+            {
+              (averageStar(dataReview) == NaN) ? (
+                <h1>{averageStar(dataReview)}</h1>
+              ) : <h1>Belum mendapatkan review</h1>
+            }
             <div>
               <h5 className="text-md mb-1 mt-8 text-gray-900 dark:text-white">Anggota Sejak {moment(dataUser?.created_at).format("dddd, DD MMMM YYYY")}</h5>
               <h5 className="text-md mb-1 font-medium text-gray-900 dark:text-white">Pengguna terverifikasi dengan :</h5>
@@ -101,7 +109,13 @@ export default function UserProfile() {
           </div>
         </Card>
         <Card className="w-1/2  m-4 h-[60vh]">
-          <h1 className="text-xl font-medium">Daftar Mobil dari Toko ini</h1>
+          {
+            (listCar.length == 0) ? (
+              <h1 className="text-xl font-medium mx-auto">User ini tidak menjual produk apapun.</h1>
+            ) : (    
+              <h1 className="text-xl font-medium mx-auto">Daftar Mobil dari Toko ini</h1>
+            )
+          }
           <div className="overflow-auto">
             {
               listCar.map(res => {

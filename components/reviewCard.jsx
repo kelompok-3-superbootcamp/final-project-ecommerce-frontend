@@ -2,7 +2,6 @@
 'use client';
 
 import { Card } from 'flowbite-react';
-import Link from 'next/link';
 import { Rate } from 'antd';
 
 export default function ReviewCard({username, rating, description}) {

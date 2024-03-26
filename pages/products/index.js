@@ -1,5 +1,5 @@
-import ListCar from "@/components/listCar"
-import SideFilter from "@/components/sideFilter"
+import ListCar from "@/components/ListCar"
+import SideFilter from "@/components/SideFilter"
 import useSWR from "swr"
 import { useAuthStore } from "@/stores/auth"
 import { host } from "@/utils/constant"
@@ -129,7 +129,7 @@ const Product = () => {
                 ) : (
                   <button className="ml-20 flex" onClick={() => save(index, car.id)}>
                     <svg
-                      class="h-6 w-6 text-gray-800 dark:text-white"
+                      className="h-6 w-6 text-gray-800 dark:text-white"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

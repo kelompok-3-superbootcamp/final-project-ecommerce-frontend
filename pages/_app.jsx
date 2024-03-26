@@ -1,7 +1,7 @@
 import "@/styles/globals.css"
 import { ConfigProvider } from "antd"
 import Header from "../components/header"
-import Footers from "../components/footer"
+import Footers from "../components/Footers"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { usePathname } from "next/navigation"

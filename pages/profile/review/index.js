@@ -1,9 +1,8 @@
-import SideBar from "@/components/sideNavBar"
-import ReviewCard from "@/components/reviewCard"
+import ReviewCard from "@/components/ReviewCard"
 import useSWR from "swr"
 import {useAuthStore} from "@/stores/auth"
 import { host } from '@/utils/constant';
-import LayoutProfile from "../../../components/LayoutProfile";
+import LayoutProfile from "@/components/LayoutProfile";
 
 
 const fetcher = ([url, header]) => fetch(`${host}${url}`, {headers: header}).then(res => res.json())

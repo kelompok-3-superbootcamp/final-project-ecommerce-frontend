@@ -10,7 +10,7 @@ export function middleware(req) {
 
   const guestUrl = ["/auth"]
 
-  const authUrl = ["/car", "/checkout", "/dashboard", "/order", "/products", "/profile"]
+  const authUrl = ["/car/edit", "/car/create", "/checkout", "/dashboard", "/order", "/products", "/profile"]
 
   for (const url of guestUrl) {
     if (pathname.startsWith(url)) {

@@ -67,6 +67,7 @@ export default function Header() {
               {user.user.role === "admin" && (
                 <Dropdown.Item onClick={() => router.push("/dashboard")}>Dashboard</Dropdown.Item>
               )}
+              <Dropdown.Item href="/profile/akun">Pengaturan Akun</Dropdown.Item>
               <Dropdown.Item href="/profile">Profil</Dropdown.Item>
               <Dropdown.Item href="/profile/pembelian">Status Pembelian</Dropdown.Item>
               <Dropdown.Item href="/profile/wishlists">Daftar Wishlist</Dropdown.Item>

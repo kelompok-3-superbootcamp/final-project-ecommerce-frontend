@@ -45,7 +45,7 @@ export default function Form({id}) {
   const handleSubmit = async e => {
     e.preventDefault()
     console.log('file nya:', file)
-    if (!file) return alert("File kosong")
+    if (!file && !id) return alert("File kosong")
 
     const formData = new FormData()
     formData.append("file", file)
@@ -53,17 +53,16 @@ export default function Form({id}) {
     setBeginUpload(true)
 
     try {
-      let uploadResponse
-      let url
-      if (file.length) {
-        uploadResponse = await uploadFiles("imageUploader", {
-          files: [file],
-        }) 
-
-        url = uploadResponse[0]?.url
-      }
+      const uploadResponse = await uploadFiles("imageUploader", {
+        files: [file],
+      })
 
       console.log(uploadResponse) // Array
+
+      const url = uploadResponse[0].url
+
+
+      console.log('resnya',uploadResponse) // Array
 
       let {
         brand_id: { value: brand_id },
@@ -228,7 +227,7 @@ export default function Form({id}) {
       <input type="file" multiple={false} accept="image/*" onChange={changeHandler} />
     </div> :
       <div className="flex">
-        <input required type="file" multiple={false} accept="image/*" onChange={changeHandler} />
+        <input type="file" multiple={false} accept="image/*" onChange={changeHandler} />
       </div>}
 
       <input

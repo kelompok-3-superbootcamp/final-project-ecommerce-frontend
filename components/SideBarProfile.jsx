@@ -25,11 +25,11 @@ export default function SideBarProfile() {
             <Sidebar.Item as={Link} href="/profile/wishlists" icon={HiHeart}>
               Wishlists
             </Sidebar.Item>
-            <Sidebar.Item as={Link} href="/profile/etalase" icon={HiViewBoards} label="Seller" labelColor="dark">
-              Etalase
-            </Sidebar.Item>
             <Sidebar.Item as={Link} href="/profile/pembelian" icon={HiShoppingBag}>
               Status Pembelian
+            </Sidebar.Item>
+            <Sidebar.Item as={Link} href="/profile/etalase" icon={HiViewBoards} label="Seller" labelColor="dark">
+              Etalase
             </Sidebar.Item>
             <Sidebar.Item as={Link} href="/profile/orders" icon={HiInbox} label="1">
               Pesanan Masuk

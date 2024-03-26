@@ -41,7 +41,7 @@ const Register = () => {
         Swal.fire({
           icon: "error",
           title: "Failed",
-          text: err?.response.data.message ?? "Registrasi Gagal",
+          text: err?.response?.data?.message ?? "Registrasi Gagal",
         })
       })
   }

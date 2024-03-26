@@ -1,6 +1,7 @@
 import { useAuthStore } from "@/stores/auth"
 import { useRouter } from "next/router"
-import { Button, Input, Space } from "antd"
+import { Input, Space } from "antd"
+import { Button } from "flowbite-react"
 import { host } from "@/utils/constant"
 import axios from "axios"
 import Swal from "sweetalert2"
@@ -173,7 +174,7 @@ const Checkout = ({ orderDetail, carDetail }) => {
                 }}
               >
                 <Input value={voucherCode} placeholder="Voucher Code" onChange={e => setVoucherCode(e.target.value)} />
-                <Button disabled={isVerify} type="primary" onClick={handleVerifyVoucher}>
+                <Button className="rounded-none" disabled={isVerify} type="primary" onClick={handleVerifyVoucher}>
                   {isVerify ? "Verifying.." : "Verify"}
                 </Button>
               </Space.Compact>
@@ -189,7 +190,7 @@ const Checkout = ({ orderDetail, carDetail }) => {
             </div>
           </figcaption>
           <Button type="primary" className="mt-6" onClick={() => handleBuy()}>
-            Beli
+            Bayar Sekarang
           </Button>
         </div>
       </div>

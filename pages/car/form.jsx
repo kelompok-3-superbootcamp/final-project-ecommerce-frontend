@@ -141,7 +141,7 @@ export default function Form({id}) {
       console.log("test :", err)
       alert("Gagal upload, mohon upload ulang")
       setBeginUpload(false)
-      router.push(`/car/edit/${car.data.id}`)
+      id ? router.push(`/car/edit/${car.data.id}`) : router.push(`/car/create`)
     }
   }
   return (

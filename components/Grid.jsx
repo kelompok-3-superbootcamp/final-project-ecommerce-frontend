@@ -11,11 +11,13 @@ export default function Grid() {
 
   var settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
+    autoplay: true,
+    autoplaySpeed: 2500,
     responsive: [
       {
         breakpoint: 1024,
@@ -49,7 +51,9 @@ export default function Grid() {
   useEffect(() => {
     if (fetchStatus === true) {
       axios
-        .get(`${host}/cars`, { params: { condition: "baru" } })
+        .get(`${host}/cars/home`, {
+          params: { condition: "baru" },
+        })
         .then(response => {
           setNewCars([...response.data.data.data])
         })
@@ -57,7 +61,9 @@ export default function Grid() {
           console.error(error)
         })
       axios
-        .get(`${host}/cars`, { params: { condition: "bekas" } })
+        .get(`${host}/cars/home`, {
+          params: { condition: "bekas" },
+        })
         .then(response => {
           setSecondCars([...response.data.data.data])
         })
@@ -69,7 +75,7 @@ export default function Grid() {
   }, [fetchStatus, setFetchStatus])
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto w-[90%]">
       <div className="space-y-7 px-5 pt-10 text-4xl font-semibold">
         <h1>Mobil Terbaru</h1>
       </div>
@@ -78,7 +84,13 @@ export default function Grid() {
         <Slider {...settings}>
           {newCars.map(car => (
             <div key={car.id}>
-              <Cards carId={car.id} carName={car.name} carPrice={car.price} carImage={car.image} />
+              <Cards
+                carId={car.id}
+                carName={car.name}
+                carBrand={car.brand_name}
+                carPrice={car.price}
+                carImage={car.image}
+              />
             </div>
           ))}
         </Slider>
@@ -91,7 +103,13 @@ export default function Grid() {
         <Slider {...settings}>
           {secondCars.map(car => (
             <div key={car.id}>
-              <Cards carId={car.id} carName={car.name} carPrice={car.price} carImage={car.image} />
+              <Cards
+                carId={car.id}
+                carName={car.name}
+                carBrand={car.brand_name}
+                carPrice={car.price}
+                carImage={car.image}
+              />
             </div>
           ))}
         </Slider>

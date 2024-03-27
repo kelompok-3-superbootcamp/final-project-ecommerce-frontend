@@ -106,7 +106,7 @@ export default function Header() {
           Mobil Manual
         </Navbar.Link>
         <Navbar.Link href="/car/create" className="text-white 2xl:text-2xl">
-          <div className="items-center justify-center cursor-pointer rounded-lg bg-yellow-400 h-10 w-24 2xl:h-16 2xl:w-36 2xl:mt-1 2xl:text-xl"><h1 className="py-2.5 px-3.5 2xl:py-4 2xl:px-6">Jual Mobil</h1></div>
+          <div className="items-center justify-center cursor-pointer rounded-lg bg-yellow-400 h-10 w-26 2xl:h-16 2xl:w-44 2xl:mt-1 2xl:text-xl"><h1 className="py-2.5 px-3.5 2xl:py-4 2xl:px-7 2xl:text-2xl">Jual Mobil</h1></div>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

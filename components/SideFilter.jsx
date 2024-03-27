@@ -68,18 +68,18 @@ export default function SideFilter() {
     router.push(`/products?${queries}`)
   }
   return (
-    <form onSubmit={handleSubmit} ref={formRef} className="mt-4 rounded-lg space-y-1 2xl:text-2xl">
-      <div className="mx-6 rounded-t-lg p-2 2xl:p-4 text-white font-bold" style={{ backgroundColor: "#01253D" }}>
+    <form onSubmit={handleSubmit} ref={formRef} className="mt-4 rounded-lg space-y-1">
+      <div className="mx-6 rounded-t-lg p-2 2xl:p-4 text-white font-bold 2xl:text-2xl" style={{ backgroundColor: "#01253D" }}>
         Cari Mobil
       </div>
       <div className="mx-6 rounded-b-lg bg-white px-2 2xl:px-4 pb-8 space-y-1">
         <div className="mb-2 block">
-          <Label className="2xl:text-2xl" htmlFor="countries" value="Brand" />
+          <Label className="" htmlFor="countries" value="Brand" />
         </div>
-        <Select id="brand" name="brand_name" className="2xl:text-2xl">
-          <option className="2xl:text-2xl" value={''}>Pilih Brand</option>
+        <Select id="brand" name="brand_name" className="">
+          <option className="" value={''}>Pilih Brand</option>
           {brands?.data?.map((item, index) => (
-            <option className="2xl:text-2xl" key={index} value={item.name}>
+            <option className="" key={index} value={item.name}>
               {item.name}
             </option>
           ))}

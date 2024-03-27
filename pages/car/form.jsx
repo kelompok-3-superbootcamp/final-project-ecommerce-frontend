@@ -17,7 +17,7 @@ const { uploadFiles } = generateReactHelpers()
 
 const fetcher = ([url, header]) => fetch(`${host}${url}`, { headers: header }).then(res => res.json())
 
-export default function Form({id}) {
+export default function Form({ id }) {
   const router = useRouter()
   const [file, setFile] = useState([])
   const [beginUpload, setBeginUpload] = useState(false)
@@ -43,10 +43,23 @@ export default function Form({id}) {
   const { data: car, error: err3, isLoading: is3 } = useSWR([`/cars/${id}`, header], fetcher)
   const handleSubmit = async e => {
     e.preventDefault()
-    if (!file && !id) return alert("File kosong")
 
     const formData = new FormData()
     formData.append("file", file)
+
+    if (!id) {
+      // Create mode
+      if (!file) return alert("File kosong")
+
+      formData.append("file", file)
+    }
+
+    if (id) {
+      // Edit mode
+      if (file) {
+        formData.append("file", file)
+      }
+    }
 
     setBeginUpload(true)
 
@@ -56,15 +69,14 @@ export default function Form({id}) {
         console.log("filenya", file.length)
         uploadResponse = await uploadFiles("imageUploader", {
           files: [file],
-        }) 
+        })
       }
 
       console.log(uploadResponse) // Array
 
       const url = uploadResponse[0]?.url
 
-
-      console.log('resnya',uploadResponse) // Array
+      console.log("resnya", uploadResponse) // Array
 
       let {
         brand_id: { value: brand_id },
@@ -104,36 +116,36 @@ export default function Form({id}) {
       if (id) {
         console.log("update ya")
         axios
-        .put(`${host}/cars/${id}`, body, { headers: header })
-        .then(res => {
-          console.log("hai :", res)
-          setBeginUpload(false)
-          Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "Selamat! Mobil mu berhasil di Post",
-          });
-          router.push("/home")
-        })
-        .catch(err => {
-          alert("erorny:", err)
-        })
+          .put(`${host}/cars/${id}`, body, { headers: header })
+          .then(res => {
+            console.log("hai :", res)
+            setBeginUpload(false)
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Selamat! Mobil mu berhasil di Post",
+            })
+            router.push("/home")
+          })
+          .catch(err => {
+            alert("erorny:", err)
+          })
       } else {
         axios
-        .post(`${host}/cars`, body, { headers: header })
-        .then(res => {
-          console.log("hai :", res)
-          setBeginUpload(false)
-          Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "Selamat! Mobil mu berhasil di Post",
-          });
-          router.push("/home")
-        })
-        .catch(err => {
-          console.log("erorny:", err)
-        }) 
+          .post(`${host}/cars`, body, { headers: header })
+          .then(res => {
+            console.log("hai :", res)
+            setBeginUpload(false)
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Selamat! Mobil mu berhasil di Post",
+            })
+            router.push("/home")
+          })
+          .catch(err => {
+            console.log("erorny:", err)
+          })
       }
 
       // upload ke database, si `url` nya...
@@ -160,19 +172,43 @@ export default function Form({id}) {
         <div className="mb-2 block">
           <Label htmlFor="base" value="Merk" />
         </div>
-        <TextInput required id="base" type="text" sizing="md" name="name" defaultValue={car?.data?.name} placeholder={car?.data?.name}/>
+        <TextInput
+          required
+          id="base"
+          type="text"
+          sizing="md"
+          name="name"
+          defaultValue={car?.data?.name}
+          placeholder={car?.data?.name}
+        />
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="base" value="Tahun" />
         </div>
-        <TextInput required id="base" type="number" sizing="md" name="year" defaultValue={car?.data?.year} placeholder={car?.data?.year}/>
+        <TextInput
+          required
+          id="base"
+          type="number"
+          sizing="md"
+          name="year"
+          defaultValue={car?.data?.year}
+          placeholder={car?.data?.year}
+        />
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="base" value="Harga" />
         </div>
-        <TextInput required id="base" type="number" sizing="md" name="price" defaultValue={car?.data?.price} placeholder={car?.data?.price}/>
+        <TextInput
+          required
+          id="base"
+          type="number"
+          sizing="md"
+          name="price"
+          defaultValue={car?.data?.price}
+          placeholder={car?.data?.price}
+        />
       </div>
       <div className="mb-2 block">
         <Label htmlFor="brand" value="Pilih Transmisi" />
@@ -192,19 +228,43 @@ export default function Form({id}) {
         <div className="mb-2 block">
           <Label htmlFor="base" value="Kilometer" />
         </div>
-        <TextInput required id="base" type="number" sizing="md" name="km" defaultValue={car?.data?.km} placeholder={car?.data?.km}/>
+        <TextInput
+          required
+          id="base"
+          type="number"
+          sizing="md"
+          name="km"
+          defaultValue={car?.data?.km}
+          placeholder={car?.data?.km}
+        />
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="base" value="Warna" />
         </div>
-        <TextInput required id="base" type="text" sizing="md" name="color" defaultValue={car?.data?.color} placeholder={car?.data?.color}/>
+        <TextInput
+          required
+          id="base"
+          type="text"
+          sizing="md"
+          name="color"
+          defaultValue={car?.data?.color}
+          placeholder={car?.data?.color}
+        />
       </div>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="base" value="Lokasi Mobil" />
         </div>
-        <TextInput required id="base" type="text" sizing="md" name="location" defaultValue={car?.data?.location} placeholder={car?.data?.location}/>
+        <TextInput
+          required
+          id="base"
+          type="text"
+          sizing="md"
+          name="location"
+          defaultValue={car?.data?.location}
+          placeholder={car?.data?.location}
+        />
       </div>
       <div className="mb-2 block">
         <Label htmlFor="type" value="Pilih Tipe Mobil" />
@@ -220,28 +280,45 @@ export default function Form({id}) {
         <div className="mb-2 block">
           <Label htmlFor="base" value="Stok" />
         </div>
-        <TextInput required id="base" type="number" sizing="md" name="stock" defaultValue={car?.data?.stock} placeholder={car?.data?.stock}/>
+        <TextInput
+          required
+          id="base"
+          type="number"
+          sizing="md"
+          name="stock"
+          defaultValue={car?.data?.stock}
+          placeholder={car?.data?.stock}
+        />
       </div>
       <div className="mb-2 block">
         <Label htmlFor="description" value="Isi deskripsi mobil" />
       </div>
-      <Textarea required id="description" rows={4} name="description" defaultValue={car?.data?.image} placeholder={car ? car?.data?.name : "Isi Deskripsi Mobil..."}/>
+      <Textarea
+        required
+        id="description"
+        rows={4}
+        name="description"
+        defaultValue={car?.data?.description}
+        placeholder={car ? car?.data?.name : "Isi Deskripsi Mobil..."}
+      />
       <div className="mb-2 block">
         <Label htmlFor="file" value="Upload Gambar Mobil" />
       </div>
-      {car ? 
-      <div className="flex">
-      <input type="file" multiple={false} accept="image/*" onChange={changeHandler} />
-    </div> :
-      <div className="flex">
-        <input type="file" multiple={false} accept="image/*" onChange={changeHandler} />
-      </div>}
+      {car ? (
+        <div className="flex">
+          <input type="file" multiple={false} accept="image/*" onChange={changeHandler} />
+        </div>
+      ) : (
+        <div className="flex">
+          <input type="file" multiple={false} accept="image/*" onChange={changeHandler} />
+        </div>
+      )}
 
       <input
         disabled={beginUpload ? true : false}
         className="cursor-pointer rounded bg-slate-900 p-2 font-bold text-white"
         type="submit"
-        value={beginUpload ? "Loading..." : (id ? "Update" : "Jual Sekarang")}
+        value={beginUpload ? "Loading..." : id ? "Update" : "Jual Sekarang"}
       />
     </form>
   )

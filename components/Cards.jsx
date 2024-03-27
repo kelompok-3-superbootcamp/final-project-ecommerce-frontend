@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function Cards({ carId, carImage, carName, carPrice, carBrand }) {
+  console.log(carImage)
 
   return (
     <Link href={`/car/show/${carId}`} key={carId}>

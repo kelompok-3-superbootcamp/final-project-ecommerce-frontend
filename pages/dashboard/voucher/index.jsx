@@ -117,7 +117,7 @@ const Voucher = () => {
         <Show.Else>
           <div className="!float-end !w-auto">
             <Link href={"/dashboard/voucher/create"}>
-              <Button type="primary">Tambah Voucher</Button>
+              <buttton className="rounded-md bg-blue-600 px-4 py-2 text-white">Tambah Voucher</buttton>
             </Link>
           </div>
           <div className="mt-12 overflow-x-auto">

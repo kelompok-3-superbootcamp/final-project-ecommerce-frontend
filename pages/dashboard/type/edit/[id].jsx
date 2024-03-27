@@ -4,6 +4,7 @@ import axios from "axios"
 import Swal from "sweetalert2"
 import { useState } from "react"
 import { useAuthStore } from "../../../../stores/auth"
+import { useRouter } from "next/router"
 
 export async function getServerSideProps(ctx) {
   const props = {
@@ -29,6 +30,8 @@ const EditType = ({ perdata }) => {
   const [form] = Form.useForm()
   const [isLoading, setIsLoading] = useState(false)
 
+  const router = useRouter()
+
   const onFinish = async values => {
     setIsLoading(true)
 
@@ -49,14 +52,18 @@ const EditType = ({ perdata }) => {
       Swal.fire({
         icon: "success",
         title: "Success",
-        text: "Berhasil edit type",
+        text: "Berhasil edit type, Redirect ke halama type dalam 2 detik",
       })
       console.log(response)
+
+      setTimeout(() => {
+        router.push("/dashboard/type")
+      }, 2000)
     } catch (err) {
       Swal.fire({
         icon: "error",
         title: "Failed",
-        text: err?.response.data.message ?? "Edit Gagal",
+        text: err?.response.data.message.name[0] ?? "Edit Gagal",
       })
     }
 

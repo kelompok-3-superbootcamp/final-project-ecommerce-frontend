@@ -11,6 +11,7 @@ import { Col, Row } from "antd"
 const { Search } = Input
 const { Text } = Typography
 import Swal from "sweetalert2"
+import { limitString } from "@/src/utils/strhelper"
 
 const Product = () => {
   const [cars, setCars] = useState({
@@ -128,15 +129,11 @@ const Product = () => {
     }).then(respose => {
       if (respose.isConfirmed) {
         axios
-          .delete(
-            `${host}/cars/${id}`,
-            {},
-            {
-              headers: {
-                Authorization: "Bearer " + user.access_token,
-              },
+          .delete(`${host}/cars/${id}`, {
+            headers: {
+              Authorization: "Bearer " + user?.access_token,
             },
-          )
+          })
           .then(res => {
             Swal.fire({
               icon: "success",
@@ -179,12 +176,18 @@ const Product = () => {
             max_km: filter.max_km,
             min_year: filter.min_year,
             max_year: filter.max_year,
+            color: filter.color,
             brand_name: filter.brand_name,
             type_name: filter.type_name,
             user_name: filter.user_name,
             price_range: filter.price_range,
             page: filter.page,
           })}`,
+          {
+            headers: {
+              Authorization: "Bearer " + user.access_token,
+            },
+          },
         )
         .then(res => {
           setCars({
@@ -668,7 +671,7 @@ const Product = () => {
                         {" "}
                         {item?.name}
                       </Table.Cell>
-                      <Table.Cell>{item?.description}</Table.Cell>
+                      <Table.Cell>{limitString(item?.description, 30)}</Table.Cell>
                       <Table.Cell>{item?.price}</Table.Cell>
                       <Table.Cell>{item?.transmission}</Table.Cell>
                       <Table.Cell>{item?.condition}</Table.Cell>
@@ -677,7 +680,7 @@ const Product = () => {
                       <Table.Cell>{item?.stock}</Table.Cell>
                       <Table.Cell>{item?.color}</Table.Cell>
                       <Table.Cell>{item?.location}</Table.Cell>
-                      <Table.Cell>{item?.image}</Table.Cell>
+                      <Table.Cell>{limitString(item?.image, 30)}</Table.Cell>
                       <Table.Cell>{item?.brand_name}</Table.Cell>
                       <Table.Cell>{item?.type_name}</Table.Cell>
                       <Table.Cell>{item?.user_name}</Table.Cell>

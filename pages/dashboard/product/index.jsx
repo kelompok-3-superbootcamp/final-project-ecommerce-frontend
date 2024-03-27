@@ -182,7 +182,6 @@ const Product = () => {
             price_range: filter.price_range,
             page: filter.page,
           })}`,
-          {},
           {
             headers: {
               Authorization: "Bearer " + user.access_token,
@@ -216,7 +215,11 @@ const Product = () => {
   useEffect(() => {
     if (cars.get)
       axios
-        .get(`${host}/cars?order_by=terbaru`)
+        .get(`${host}/cars?order_by=terbaru`, {
+          headers: {
+            Authorization: "Bearer " + user.access_token,
+          },
+        })
         .then(res => {
           setCars({
             data: res.data.data,

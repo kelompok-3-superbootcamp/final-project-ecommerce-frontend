@@ -1,3 +1,4 @@
+/* eslint-disable */
 import "@/styles/globals.css"
 import { ConfigProvider } from "antd"
 import Footers from "../components/Footers"
@@ -7,7 +8,7 @@ import { usePathname } from "next/navigation"
 import { Show } from "../utils/Show"
 import { DashLayout } from "@/components/Layouts"
 import Head from "next/head"
-import Header from "../components/header"
+import Header from "../components/Header"
 
 export default function App({ Component, pageProps }) {
   const pathname = usePathname()

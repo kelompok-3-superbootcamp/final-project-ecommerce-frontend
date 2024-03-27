@@ -1,4 +1,5 @@
 "use client"
+"use client"
 
 import Link from "next/link"
 import { Button, Navbar } from "flowbite-react"
@@ -28,6 +29,8 @@ export default function Pembelian() {
   
   return (
     <LayoutProfile>
+      <Card className="m-auto my-8">
+        <Navbar fluid rounded className="mx-auto mt-8 items-center">
       <Card className="m-auto my-8">
         <Navbar fluid rounded className="mx-auto mt-8 items-center">
           <Navbar.Toggle />
@@ -95,5 +98,6 @@ export default function Pembelian() {
             </section> : ''}
       </Card>
     </LayoutProfile>
+  )
   )
 }

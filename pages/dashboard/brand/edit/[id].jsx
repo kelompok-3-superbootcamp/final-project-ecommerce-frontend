@@ -141,7 +141,7 @@ const EditBrand = props => {
                 },
               ]}
             >
-              <InputNumber className="!w-full" />
+              <Input />
             </Form.Item>
 
             <Form.Item

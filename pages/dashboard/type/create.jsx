@@ -4,11 +4,14 @@ import axios from "axios"
 import Swal from "sweetalert2"
 import { useState } from "react"
 import { useAuthStore } from "@/stores/auth"
+import { useRouter } from "next/router"
 
 const CreateType = () => {
   const user = useAuthStore(state => state.user)
   const [form] = Form.useForm()
   const [isLoading, setIsLoading] = useState(false)
+
+  const router = useRouter()
 
   const onFinish = async values => {
     setIsLoading(true)
@@ -30,14 +33,18 @@ const CreateType = () => {
       Swal.fire({
         icon: "success",
         title: "Success",
-        text: "Berhasil create type",
+        text: "Berhasil create type, Redirect ke halaman type dalam 2 detik",
       })
       console.log(response)
+
+      setTimeout(() => {
+        router.push("/dashboard/type")
+      }, 2000)
     } catch (err) {
       Swal.fire({
         icon: "error",
         title: "Failed",
-        text: err?.response.data.message ?? "Create Gagal",
+        text: err?.response.data.message.name[0] ?? "Create Gagal",
       })
     }
 

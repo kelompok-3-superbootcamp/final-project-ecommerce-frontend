@@ -8,32 +8,10 @@ import Swal from "sweetalert2"
 import Link from "next/link"
 import { useAuthStore } from "../../../stores/auth"
 
-export async function getServerSideProps() {
-  const props = {
-    perdata: null,
-  }
-
-  try {
-    const res = await axios.get(
-      `${host}/types`,
-      // {},{headers: {
-      //   Authorization: 'Bearer ' + token
-      // }}
-    )
-    props.perdata = res.data.data
-  } catch (err) {
-    props.perdata = null
-  }
-
-  console.log(props, host)
-
-  return { props }
-}
-
-const Type = ({ perdata }) => {
+const Type = () => {
   const [types, setTypes] = useState({
-    refetch: false,
-    data: perdata,
+    refetch: true,
+    data: null,
   })
 
   const user = useAuthStore(state => state.user)

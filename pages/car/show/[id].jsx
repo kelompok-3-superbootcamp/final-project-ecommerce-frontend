@@ -131,19 +131,25 @@ const Car = () => {
                     >
                       Beli sekarang
                     </button>
-                    <button className="flex rounded border-0 bg-green-500 px-6 py-2 text-white hover:bg-green-600 focus:outline-none">
+                    <a
+                      href={`https://wa.me/${res.phone_number}?text=Halo%2C%20apakah%20mobil%20ini%20tersedia%3F`}
+                      className="flex rounded border-0 bg-green-500 px-6 py-2 text-white hover:bg-green-600 focus:outline-none"
+                    >
                       WhatsApp
-                    </button>
-                    <button className="flex rounded border-0 bg-purple-500 px-6 py-2 text-white hover:bg-purple-600 focus:outline-none">
-                      Telepon
-                    </button>
-                    <button className="inline-flex h-10 w-10 items-center justify-center rounded-full border-0 bg-gray-200 p-0 text-gray-500">
+                    </a>
+                    <a
+                      href={`mailto:${res.email}`}
+                      className="flex rounded border-0 bg-purple-500 px-6 py-2 text-white hover:bg-purple-600 focus:outline-none"
+                    >
+                      E-mail
+                    </a>
+                    {/* <button className="inline-flex h-10 w-10 items-center justify-center rounded-full border-0 bg-gray-200 p-0 text-gray-500">
                       <FaHeart />
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
-              <div className="mx-auto my-10">
+              <div className="mx-auto my-10 w-[90%]">
                 <Slider {...settings}>
                   <div className="bg-white p-10 text-center">
                     <div className="mx-auto flex justify-center">

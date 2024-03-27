@@ -4,6 +4,7 @@ import Swal from "sweetalert2"
 import axios from "axios"
 import { host } from "@/utils/constant"
 import { useRouter } from "next/router"
+import LayoutProfile from "@/components/LayoutProfile"
 
 const AkunPage = () => {
   const { user, logout } = useAuthStore()
@@ -57,72 +58,74 @@ const AkunPage = () => {
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="p-4">
-        <h1 className="text-xl font-bold">Autentikasi Akun</h1>
-        <p className="text-sm">Ubah password</p>
+    <LayoutProfile>
+      <div className="min-h-screen">
+        <div className="p-4">
+          <h1 className="text-xl font-bold">Autentikasi Akun</h1>
+          <p className="text-sm">Ubah password</p>
 
-        <form onSubmit={handleChangePassword} className="mt-4 w-max">
-          <div className=" space-y-2">
-            <div className="flex flex-col space-y-2">
-              <label htmlFor="old_password" className="text-base font-bold text-black/80">
-                Password Lama
-              </label>
-              <input
-                onChange={e =>
-                  setData({
-                    ...data,
-                    old_password: e.target.value,
-                  })
-                }
-                id="old_password"
-                type="password"
-                className="rounded-md border px-1.5 py-1 outline-none"
-              />
+          <form onSubmit={handleChangePassword} className="mt-4 w-max">
+            <div className=" space-y-2">
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="old_password" className="text-base font-bold text-black/80">
+                  Password Lama
+                </label>
+                <input
+                  onChange={e =>
+                    setData({
+                      ...data,
+                      old_password: e.target.value,
+                    })
+                  }
+                  id="old_password"
+                  type="password"
+                  className="rounded-md border px-1.5 py-1 outline-none"
+                />
+              </div>
+
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="new_password" className="text-base font-bold text-black/80">
+                  Password Baru
+                </label>
+                <input
+                  onChange={e =>
+                    setData({
+                      ...data,
+                      new_password: e.target.value,
+                    })
+                  }
+                  id="new_password"
+                  type="password"
+                  className="rounded-md border px-1.5 py-1 outline-none"
+                />
+              </div>
+
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="new_password" className="text-base font-bold text-black/80">
+                  Konfirmasi Password Baru
+                </label>
+                <input
+                  onChange={e =>
+                    setData({
+                      ...data,
+                      password_confirmation: e.target.value,
+                    })
+                  }
+                  id="new_password"
+                  type="password"
+                  className="rounded-md border px-1.5 py-1 outline-none"
+                />
+                {confirmationErrorMessage && <p className="text-red-600">{confirmationErrorMessage}</p>}
+              </div>
             </div>
 
-            <div className="flex flex-col space-y-2">
-              <label htmlFor="new_password" className="text-base font-bold text-black/80">
-                Password Baru
-              </label>
-              <input
-                onChange={e =>
-                  setData({
-                    ...data,
-                    new_password: e.target.value,
-                  })
-                }
-                id="new_password"
-                type="password"
-                className="rounded-md border px-1.5 py-1 outline-none"
-              />
-            </div>
-
-            <div className="flex flex-col space-y-2">
-              <label htmlFor="new_password" className="text-base font-bold text-black/80">
-                Konfirmasi Password Baru
-              </label>
-              <input
-                onChange={e =>
-                  setData({
-                    ...data,
-                    password_confirmation: e.target.value,
-                  })
-                }
-                id="new_password"
-                type="password"
-                className="rounded-md border px-1.5 py-1 outline-none"
-              />
-              {confirmationErrorMessage && <p className="text-red-600">{confirmationErrorMessage}</p>}
-            </div>
-          </div>
-
-          <button disabled={isLoading} type="submit" className="mt-4 rounded-md bg-sky-600 px-4 py-2 text-white">
-            {isLoading ? "Proses.." : "Simpan"}
-          </button>
-        </form>
+            <button disabled={isLoading} type="submit" className="mt-4 rounded-md bg-sky-600 px-4 py-2 text-white">
+              {isLoading ? "Proses.." : "Simpan"}
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </LayoutProfile>
   )
 }
 

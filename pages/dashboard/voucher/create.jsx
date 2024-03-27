@@ -175,9 +175,13 @@ const AddVoucher = () => {
             span: 16,
           }}
         >
-          <Button type="primary" loading={isLoading} htmlType="submit">
+          <button
+            disabled={isLoading}
+            type="submit"
+            className="rounded-md bg-blue-600 px-4 py-2 text-white disabled:bg-blue-800"
+          >
             Submit
-          </Button>
+          </button>
         </Form.Item>
       </Form>
     </>

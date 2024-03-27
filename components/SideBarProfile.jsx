@@ -6,6 +6,7 @@ import {
   HiChartPie,
   HiHeart,
   HiInbox,
+  HiOutlineKey,
   HiShoppingBag,
   HiUser,
   HiViewBoards,
@@ -36,6 +37,9 @@ export default function SideBarProfile() {
             </Sidebar.Item>
             <Sidebar.Item as={Link} href="/profile/review" icon={HiChartPie}>
               Review Toko Mu
+            </Sidebar.Item>
+            <Sidebar.Item as={Link} href="/profile/akun" icon={HiOutlineKey}>
+              Ganti Password
             </Sidebar.Item>
           </Sidebar.ItemGroup>
         </Sidebar.Items>

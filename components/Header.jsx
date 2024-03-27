@@ -49,7 +49,7 @@ export default function Header() {
   }
 
   return (
-    <Navbar fluid style={{ backgroundColor: "#01253D", color: "white" }} className="2xl:h-[10vh] 2xl:items-center">
+    <Navbar fluid style={{ backgroundColor: "#01253D", color: "white" }} className="2xl:h-[9vh]">
       <Navbar.Brand href="/home">
         <Image src="/sanbercar.jpg" className="mr-3 h-10" alt="Flowbite React Logo" width={50} height={50} />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white 2xl:text-4xl">SanberCar</span>
@@ -106,7 +106,7 @@ export default function Header() {
           Mobil Manual
         </Navbar.Link>
         <Navbar.Link href="/car/create" className="text-white 2xl:text-2xl">
-          <Button className="bg-yellow-400 2xl:h-16 2xl:w-64 2xl:text-xl">Jual Mobil</Button>
+          <div className="items-center justify-center cursor-pointer rounded-lg bg-yellow-400 h-10 w-24 2xl:h-16 2xl:w-36 2xl:mt-1 2xl:text-xl"><h1 className="py-2.5 px-3.5 2xl:py-4 2xl:px-6">Jual Mobil</h1></div>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

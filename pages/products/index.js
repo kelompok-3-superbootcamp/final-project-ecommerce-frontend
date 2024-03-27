@@ -110,7 +110,7 @@ const Product = () => {
                 key={index}
                 condition={car.condition}
               ></ListCar>
-              <div className="w-full bg-white p-1">
+              <div className="w-full bg-white p-1 rounded-b-lg">
                 { wishlists && wishlists[index] ? (
                   <button className="ml-20 flex" onClick={() => unsave(index, car.id)}>
                     <svg

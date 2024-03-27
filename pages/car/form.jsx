@@ -225,7 +225,7 @@ export default function Form({id}) {
       <div className="mb-2 block">
         <Label htmlFor="description" value="Isi deskripsi mobil" />
       </div>
-      <Textarea required id="description" rows={4} name="description" defaultValue={car?.data?.image} placeholder={car ? car?.data?.name : "Isi Deskripsi Mobil..."}/>
+      <Textarea required id="description" rows={4} name="description" defaultValue={car?.data?.description} placeholder={car ? car?.data?.name : "Isi Deskripsi Mobil..."}/>
       <div className="mb-2 block">
         <Label htmlFor="file" value="Upload Gambar Mobil" />
       </div>

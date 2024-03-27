@@ -7,7 +7,7 @@ import banner2 from '../public/banner2.png'
 
 export default function Slider() {
   return (
-    <div className="h-[16vh] md:h-[74vh]">
+    <div className="h-[16vh] md:h-[74vh] 2xl:h-[60vh]">
       <Carousel id='banner' className='!rounded-none'>
         <Image src={banner1} alt='...'/>
         <Image src={banner2} alt='...'/>

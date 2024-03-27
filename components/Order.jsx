@@ -1,6 +1,5 @@
 import React from "react"
 import { Card } from "antd"
-import Image from "antd"
 import { Button } from "flowbite-react"
 const { Meta } = Card
 

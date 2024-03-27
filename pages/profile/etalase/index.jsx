@@ -49,7 +49,7 @@ export default function Etalase() {
             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
               {index+1}
             </Table.Cell>
-            <Table.Cell class="">{car.brand_name} {car.name}</Table.Cell>
+            <Table.Cell className="">{car.brand_name} {car.name}</Table.Cell>
             <Table.Cell >{car.year}</Table.Cell>
             <Table.Cell >{car.condition}</Table.Cell>
             <Table.Cell >{car.km}</Table.Cell>

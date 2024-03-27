@@ -1,5 +1,5 @@
-import { SubmitButton } from "@/components/buttons"
-import { EmailInput, PasswordInput, TextInput2 } from "@/components/forms"
+import { SubmitButton } from "@/components/SubmitButton"
+import { EmailInput, PasswordInput, TextInput2 } from "@/components/Forms"
 import { useState } from "react"
 import { FaArrowLeft } from "react-icons/fa"
 import { useRouter } from "next/router"
@@ -41,7 +41,7 @@ const Register = () => {
         Swal.fire({
           icon: "error",
           title: "Failed",
-          text: err?.response.data.message ?? "Registrasi Gagal",
+          text: err?.response?.data?.message ?? "Registrasi Gagal",
         })
       })
   }

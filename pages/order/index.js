@@ -1,4 +1,4 @@
-import Order from "@/components/order"
+import Order from "@/components/Order"
 
 const OrderPage = () => {
     return (

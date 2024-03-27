@@ -41,11 +41,9 @@ export default function Form({id}) {
   const { data: brands, error: err1, isLoading: is1 } = useSWR(["/brands", header], fetcher)
   const { data: types, error: err2, isLoading: is2 } = useSWR(["/types", header], fetcher)
   const { data: car, error: err3, isLoading: is3 } = useSWR([`/cars/${id}`, header], fetcher)
-  console.log(`mobil:${id}:`, car)
   const handleSubmit = async e => {
     e.preventDefault()
-    console.log('file nya:', file)
-    if (!file) return alert("File kosong")
+    if (!file && !id) return alert("File kosong")
 
     const formData = new FormData()
     formData.append("file", file)
@@ -53,17 +51,20 @@ export default function Form({id}) {
     setBeginUpload(true)
 
     try {
-      let uploadResponse
-      let url
-      if (file.length) {
+      let uploadResponse = []
+      if (file != 0) {
+        console.log("filenya", file.length)
         uploadResponse = await uploadFiles("imageUploader", {
           files: [file],
         }) 
-
-        url = uploadResponse[0]?.url
       }
 
       console.log(uploadResponse) // Array
+
+      const url = uploadResponse[0]?.url
+
+
+      console.log('resnya',uploadResponse) // Array
 
       let {
         brand_id: { value: brand_id },
@@ -79,7 +80,7 @@ export default function Form({id}) {
         location: { value: location },
         type_id: { value: type_id },
       } = formRef.current
-      console.log(header)
+
       let body = {
         brand_id,
         name,
@@ -93,12 +94,15 @@ export default function Form({id}) {
         color,
         location,
         type_id,
-        image: url,
+        image: url ? url : car.data.image,
       }
 
       console.log("bodi", body)
 
+      let res
+
       if (id) {
+        console.log("update ya")
         axios
         .put(`${host}/cars/${id}`, body, { headers: header })
         .then(res => {
@@ -112,7 +116,7 @@ export default function Form({id}) {
           router.push("/home")
         })
         .catch(err => {
-          console.log("erorny:", err)
+          alert("erorny:", err)
         })
       } else {
         axios
@@ -136,6 +140,8 @@ export default function Form({id}) {
     } catch (err) {
       console.log("test :", err)
       alert("Gagal upload, mohon upload ulang")
+      setBeginUpload(false)
+      id ? router.push(`/car/edit/${car.data.id}`) : router.push(`/car/create`)
     }
   }
   return (
@@ -219,7 +225,7 @@ export default function Form({id}) {
       <div className="mb-2 block">
         <Label htmlFor="description" value="Isi deskripsi mobil" />
       </div>
-      <Textarea required id="description" rows={4} name="description" defaultValue={car?.data?.name} placeholder={car ? car?.data?.name : "Isi Deskripsi Mobil..."}/>
+      <Textarea required id="description" rows={4} name="description" defaultValue={car?.data?.image} placeholder={car ? car?.data?.name : "Isi Deskripsi Mobil..."}/>
       <div className="mb-2 block">
         <Label htmlFor="file" value="Upload Gambar Mobil" />
       </div>
@@ -228,14 +234,14 @@ export default function Form({id}) {
       <input type="file" multiple={false} accept="image/*" onChange={changeHandler} />
     </div> :
       <div className="flex">
-        <input required type="file" multiple={false} accept="image/*" onChange={changeHandler} />
+        <input type="file" multiple={false} accept="image/*" onChange={changeHandler} />
       </div>}
 
       <input
         disabled={beginUpload ? true : false}
         className="cursor-pointer rounded bg-slate-900 p-2 font-bold text-white"
         type="submit"
-        value={beginUpload ? "Loading..." : (car ? "Update" : "Jual Sekarang")}
+        value={beginUpload ? "Loading..." : (id ? "Update" : "Jual Sekarang")}
       />
     </form>
   )

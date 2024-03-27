@@ -7,6 +7,14 @@
   background-color: #eceef3;
 }
 
+#banner .rounded-lg {
+  border-radius: 0% !important;
+}
+
+span .duration-200 {
+  font-size: larger;
+}
+
 /* spinner */
 @keyframes ldio-e6y9orkgs95 {
   0%,

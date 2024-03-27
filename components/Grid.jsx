@@ -76,7 +76,7 @@ export default function Grid() {
 
   return (
     <div className="container mx-auto w-[90%]">
-      <div className="space-y-7 px-5 pt-10 text-4xl font-semibold">
+      <div className="space-y-7 px-5 pt-4 2xl:pt-8 text-4xl font-semibold">
         <h1>Mobil Terbaru</h1>
       </div>
 

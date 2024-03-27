@@ -88,7 +88,7 @@ const Product = () => {
       <h1 id="title" className="px-6 py-4 text-4xl font-bold">
         Pusat Jual Beli Mobil Online di Indonesia
       </h1>
-      <div className="flex space-y-4 py-2" id="listcar">
+      <div className="flex space-y-4 py-2 pb-4" id="listcar">
         <section className="w-1/4">
           <SideFilter />
         </section>

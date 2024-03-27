@@ -9,8 +9,8 @@ export default function Footers() {
     <Footer bgDark style={{backgroundColor: '#01253D', color:"white"}}>
       <div className="w-full">
         <h1 className='pl-12 pt-12 text-3xl'>SanberCar.id</h1>
-        <div className="flex w-full px-12 py-8 justify-between">
-          <div className='w-2/5 mb-8'>
+        <div className="md:flex w-full px-12 py-8 justify-between">
+          <div className='md:w-2/5 mb-8'>
             <Footer.Title title="Head Office"/>
             <Footer.LinkGroup col>
               <Footer.Link href="#">Millennium Centennial Center, Jl. Jenderal Sudirman No.Kav.25, RT.12/RW.1, Kuningan, Karet Kuningan, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12920</Footer.Link>
@@ -23,14 +23,14 @@ export default function Footers() {
               <Footer.Link href="#">Tata Cara Pembayaran</Footer.Link>
             </Footer.LinkGroup>
           </div>
-          <div className=''>
+          <div className='mt-8 md:mt-0'>
             <Footer.Title title="Hubungi Kami" />
             <Footer.LinkGroup col>
               <Footer.Link href="#">Halo@sanbercar.id</Footer.Link>
               <Footer.Link href="#">08xx xxxx xxxx</Footer.Link>
             </Footer.LinkGroup>
           </div>
-          <div className="mt-4 md:flex md:space-x-4 sm:mt-0 md:justify-center">
+          <div className="mt-4 flex space-x-4 sm:mt-0 justify-center">
             <Footer.Icon href="#" icon={BsFacebook} />
             <Footer.Icon href="#" icon={BsInstagram} />
             <Footer.Icon href="#" icon={BsTwitter} />

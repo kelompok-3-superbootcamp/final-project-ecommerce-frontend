@@ -49,10 +49,10 @@ export default function Header() {
   }
 
   return (
-    <Navbar fluid style={{ backgroundColor: "#01253D", color: "white" }}>
+    <Navbar fluid style={{ backgroundColor: "#01253D", color: "white" }} className="2xl:h-[10vh] 2xl:items-center">
       <Navbar.Brand href="/home">
         <Image src="/sanbercar.jpg" className="mr-3 h-10" alt="Flowbite React Logo" width={50} height={50} />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">SanberCar</span>
+        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white 2xl:text-4xl">SanberCar</span>
       </Navbar.Brand>
       <div className="flex md:order-2">
         <Dropdown arrowIcon={false} inline label={<Avatar alt="User settings" img="/download.png" rounded />}>
@@ -90,23 +90,23 @@ export default function Header() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/products?condition=bekas" className="my-3 text-white">
+        <Navbar.Link href="/products?condition=bekas" className="my-3 text-white 2xl:text-2xl 2xl:pt-2">
           Mobil Bekas
         </Navbar.Link>
-        <Navbar.Link href="/products?condition=baru" className="my-3 text-white">
+        <Navbar.Link href="/products?condition=baru" className="my-3 text-white 2xl:text-2xl 2xl:pt-2">
           Mobil Baru
         </Navbar.Link>
-        <Navbar.Link href="/products?type_name=listrik" className="my-3 text-white">
+        <Navbar.Link href="/products?type_name=listrik" className="my-3 text-white 2xl:text-2xl 2xl:pt-2">
           Mobil Listrik
         </Navbar.Link>
-        <Navbar.Link href="/products?transmission=automatic" className="my-3 text-white">
+        <Navbar.Link href="/products?transmission=automatic" className="my-3 text-white 2xl:text-2xl 2xl:pt-2">
           Mobil Matic
         </Navbar.Link>
-        <Navbar.Link href="/products?transmission=manual" className="my-3 text-white">
+        <Navbar.Link href="/products?transmission=manual" className="my-3 text-white 2xl:text-2xl 2xl:pt-2">
           Mobil Manual
         </Navbar.Link>
-        <Navbar.Link href="/car/create" className="text-white">
-          <Button className="bg-yellow-400">Jual Mobil</Button>
+        <Navbar.Link href="/car/create" className="text-white 2xl:text-2xl">
+          <Button className="bg-yellow-400 2xl:h-16 2xl:w-64 2xl:text-xl">Jual Mobil</Button>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

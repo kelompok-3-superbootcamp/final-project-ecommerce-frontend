@@ -20,7 +20,7 @@ const Product = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [filter, setFilter] = useState({
     name: "",
-    order_by: "desc",
+    order_by: "terbaru",
     user_name: "",
     brand_name: "",
     type_name: "",
@@ -30,6 +30,7 @@ const Product = () => {
     price_range: "",
     min_price: "",
     max_price: "",
+    color: "",
     min_year: "",
     max_year: "",
     min_km: "",
@@ -46,14 +47,16 @@ const Product = () => {
   })
 
   const makeQuery = query => {
-    return `order_by=${query.order_by}${query.name ? `&name=${query.name}` : ""}${query.transmission ? `&transmission=${query.transmission}` : ""}${query.location ? `&location=${query.location}` : ""}${query.condition ? `&condition=${query.condition}` : ""}${query.min_price ? `&min_price=${query.min_price}` : ""}${query.max_price ? `&max_price=${query.max_price}` : ""}${query.min_km ? `&min_km=${query.min_km}` : ""}${query.max_km ? `&max_km=${query.max_km}` : ""}${query.min_year ? `&min_year=${query.min_year}` : ""}${query.max_year ? `&max_year=${query.max_year}` : ""}${query.brand_name ? `&brand_name=${query.brand_name}` : ""}${query.type_name ? `&type_name=${query.type_name}` : ""}${query.user_name ? `&user_name=${query.user_name}` : ""}${query.price_range ? `&price_range=${query.price_range}` : ""}${query.page ? `&page=${query.page}` : ""}`
+    return `order_by=${query.order_by}${query.name ? `&name=${query.name}` : ""}${query.transmission ? `&transmission=${query.transmission}` : ""}${query.location ? `&location=${query.location}` : ""}${query.condition ? `&condition=${query.condition}` : ""}${query.min_price ? `&min_price=${query.min_price}` : ""}${query.max_price ? `&max_price=${query.max_price}` : ""}${query.color ? `&max_price=${query.color}` : ""}${query.min_km ? `&min_km=${query.min_km}` : ""}${query.max_km ? `&max_km=${query.max_km}` : ""}${query.min_year ? `&min_year=${query.min_year}` : ""}${query.max_year ? `&max_year=${query.max_year}` : ""}${query.brand_name ? `&brand_name=${query.brand_name}` : ""}${query.type_name ? `&type_name=${query.type_name}` : ""}${query.user_name ? `&user_name=${query.user_name}` : ""}${query.price_range ? `&price_range=${query.price_range}` : ""}${query.page ? `&page=${query.page}` : ""}`
   }
 
   const onChangePage = page => {
     setCurrent(page)
     setIsLoading(true)
-    setIsLoading(false)
     setFilter({ ...filter, page: page })
+    setTimeout(() => {
+      setRefetch(true)
+    }, 500)
   }
 
   const onChangeOrderBy = value => {
@@ -85,6 +88,9 @@ const Product = () => {
   }
   const onChangeMaxPrice = value => {
     setFilter({ ...filter, max_price: value })
+  }
+  const onChangeColor = value => {
+    setFilter({ ...filter, color: value })
   }
   const onChangeMinYear = value => {
     setFilter({ ...filter, min_year: value })
@@ -207,7 +213,7 @@ const Product = () => {
   useEffect(() => {
     if (cars.get)
       axios
-        .get(`${host}/cars?order_by=desc`)
+        .get(`${host}/cars?order_by=terbaru`)
         .then(res => {
           setCars({
             data: res.data.data,
@@ -296,11 +302,11 @@ const Product = () => {
                                   filterOption={filterOption}
                                   options={[
                                     {
-                                      value: "desc",
+                                      value: "terbaru",
                                       label: "Terbaru",
                                     },
                                     {
-                                      value: "asc",
+                                      value: "terlama",
                                       label: "Terlama",
                                     },
                                   ]}
@@ -353,26 +359,16 @@ const Product = () => {
                             <Col span={6}>
                               <Space direction="vertical" style={{ marginBottom: "8px" }}>
                                 <Text>Penjual</Text>
-                                <Select
-                                  showSearch
+                                <Input
+                                  size="small"
+                                  className="!border-gray-300 !p-2"
                                   value={filter.user_name}
                                   style={{
                                     width: 180,
+                                    borderRadius: "8px",
                                   }}
                                   placeholder="Penjual"
-                                  optionFilterProp="children"
                                   onChange={onChangeUserName}
-                                  filterOption={filterOption}
-                                  options={[
-                                    {
-                                      value: "desc",
-                                      label: "Terbaru",
-                                    },
-                                    {
-                                      value: "asc",
-                                      label: "Terlama",
-                                    },
-                                  ]}
                                 />
                               </Space>
                               <Space direction="vertical" style={{ marginBottom: "8px" }}>
@@ -457,12 +453,12 @@ const Product = () => {
                                   filterOption={filterOption}
                                   options={[
                                     {
-                                      value: "desc",
-                                      label: "Terbaru",
+                                      value: "manual",
+                                      label: "Manual",
                                     },
                                     {
-                                      value: "asc",
-                                      label: "Terlama",
+                                      value: "automatic",
+                                      label: "Automatic",
                                     },
                                   ]}
                                 />
@@ -504,6 +500,20 @@ const Product = () => {
                                     { value: "2023", label: "2023" },
                                     { value: "2024", label: "2024" },
                                   ]}
+                                />
+                              </Space>
+                              <Space direction="vertical" style={{ marginBottom: "8px" }}>
+                                <Text>Warna</Text>
+                                <Input
+                                  size="small"
+                                  className="!border-gray-300 !p-2"
+                                  value={filter.color}
+                                  style={{
+                                    width: 180,
+                                    borderRadius: "8px",
+                                  }}
+                                  placeholder="Warna"
+                                  onChange={onChangeColor}
                                 />
                               </Space>
                             </Col>

@@ -45,7 +45,6 @@ const Voucher = () => {
   //       })
   //     })
   // }
-  console.log("user", user)
 
   const handleDelete = id => {
     const voucherName = vouchers.data.find(item => item.id === id).voucher_code
@@ -146,15 +145,6 @@ const Voucher = () => {
                       <Table.Cell>{moment(item.expire_at).format("dddd, DD-MMMM-YYYY")}</Table.Cell>
                       <Table.Cell>
                         <div className="flex items-center gap-2">
-                          <Link href={`/dashboard/voucher/edit/${item.id}`}>
-                            <div
-                              className="cursor-pointer font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                              title="Edit"
-                            >
-                              <FaEdit className="text-yellow-300" />
-                            </div>
-                          </Link>
-                          |
                           <div
                             className="cursor-pointer font-medium text-cyan-600 hover:underline dark:text-cyan-500"
                             title="Delete"

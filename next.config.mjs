@@ -40,9 +40,8 @@ const nextConfig = {
     "rc-util",
   ],
   images: {
-    domains: ['via.placeholder.com', 'utfs.io']
-  }
+    domains: ["via.placeholder.com", "utfs.io", "mazda-deta.co.id"],
+  },
+}
 
-};
-
-export default nextConfig;
+export default nextConfig

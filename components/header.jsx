@@ -8,10 +8,12 @@ import { useAuthStore } from "@/stores/auth"
 import Swal from "sweetalert2"
 import axios from "axios"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Header() {
   const router = useRouter()
   const { logout, user } = useAuthStore(state => state)
+  console.log("user", user)
 
   const handleSignOut = () => {
     axios
@@ -65,7 +67,9 @@ export default function Header() {
           {user ? (
             <>
               {user.user.role === "admin" && (
+                // <Link href={"/dashboard"}>
                 <Dropdown.Item onClick={() => router.push("/dashboard")}>Dashboard</Dropdown.Item>
+                // </Link>
               )}
               <Dropdown.Item href="/profile">Profil</Dropdown.Item>
               <Dropdown.Item href="/profile/pembelian">Status Pembelian</Dropdown.Item>

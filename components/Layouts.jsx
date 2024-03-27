@@ -6,7 +6,6 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { BiSolidDiscount } from "react-icons/bi"
 import { FaShoppingCart, FaCar } from "react-icons/fa"
-import { MdReviews } from "react-icons/md"
 import { BsFuelPumpFill } from "react-icons/bs"
 import { IoPricetag } from "react-icons/io5"
 import { FiLogOut } from "react-icons/fi"
@@ -14,7 +13,6 @@ import { host } from "@/utils/constant"
 import { useAuthStore } from "@/stores/auth"
 import Swal from "sweetalert2"
 import axios from "axios"
-import { Show } from "@/utils/Show"
 
 const { Header, Sider, Content, Footer } = Layout
 
@@ -178,9 +176,9 @@ export const DashLayout = ({ children }) => {
             }}
           />
           {user?.access_token && (
-            <Dropdown menu={{ items }} placement="bottomRight">
+            <Dropdown menu={{ items }} placement="bottomRight" trigger={["click"]}>
               <Space className="!cursor-pointer">
-                Username
+                {user?.email}
                 <CaretDownOutlined />
               </Space>
             </Dropdown>

@@ -17,13 +17,13 @@ const Orderan = () => {
 
   return (
     <LayoutProfile>
-      <h1 className="font-bold text-4xl mb-8 m-6 ml-16">Daftar Pesanan Masuk</h1>
-      <div className="w-11/12">
+      <h1 className="font-bold text-2xl lg:mb-8 mt-2 mx-6 lg:m-6 lg:ml-16">Daftar Pesanan Masuk</h1>
+      <div className="lg:w-11/12 w-80 overflow-x-auto">
       {orders?.data?.length ?
-      <Table hoverable className='mb-8 m-6 ml-16'>
+      <Table hoverable className='mb-8 lg:m-6 mx-6 lg:ml-16'>
         <Table.Head>
           <Table.HeadCell>No.</Table.HeadCell>
-          <Table.HeadCell className="pl-0 ml-0">Merk</Table.HeadCell>
+          <Table.HeadCell>Merk</Table.HeadCell>
           <Table.HeadCell>Kondisi</Table.HeadCell>
           <Table.HeadCell>Transmisi</Table.HeadCell>
           <Table.HeadCell>Harga</Table.HeadCell>

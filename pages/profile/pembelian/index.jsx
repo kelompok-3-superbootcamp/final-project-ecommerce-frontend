@@ -16,6 +16,7 @@ import { useRouter } from "next/router"
 import { useEffect } from "react"
 import axios from "axios"
 import ReviewCard from "@/components/ReviewCard"
+import { limitString } from "../../../src/utils/strhelper"
 
 const fetcher = ([url, header]) => fetch(`${host}${url}`, { headers: header }).then(res => res.json())
 
@@ -106,7 +107,7 @@ export default function Pembelian() {
             </Navbar.Collapse>
           </Navbar>
           {orders?.data?.map((car, index) => (
-            <div key={index} className="grid grid-cols-2 gap-4">
+            <div key={index} className="grid lg:grid-cols-2 grid-cols-1 gap-4">
               <ListCar
                 id={car.id}
                 image_url={car.image}
@@ -123,7 +124,7 @@ export default function Pembelian() {
                 condition={car.condition}
               ></ListCar>
               { status === "pending" ? (
-                <Button onClick={() => handleBuy(car.order_id)} className="text-blue m-auto h-10 bg-white">
+                <Button onClick={() => handleBuy(car.order_id)} className="text-blue m-auto h-10 bg-white mt-10 lg:my-auto">
                   Bayar Sekarang
                 </Button>
               ) : (status === "success" ? (car.isReviewed == 0 ? (
@@ -134,16 +135,16 @@ export default function Pembelian() {
                 <h1 className="m-auto">Sudah di Review</h1>
               )) : (status === 'error' ? <Button onClick={() => handleBuy(car.order_id)} className="text-blue m-auto h-10 bg-white">
               Bayar Ulang
-            </Button> : <h1 className="mt-7 text-red-500 font-bold">Status Pembelian dibatalkan!</h1> ))}
+            </Button> : <h1 className="lg:mt-7 lg:max-w-full max-w-36 ml-4 text-red-500 font-bold">Status Pembelian dibatalkan!</h1> ))}
             </div>
           ))}
 
           {status == "reviewed" ? (
-            <section className="m-auto w-full p-8">
+            <section className="m-auto w-full lg:p-8 space-y-10">
               {reviews?.data.length
                 ? reviews?.data.map((review, index) => (
                     <>
-                      <div key={index} className="flex grid grid-cols-2 gap-4">
+                      <div key={index} className="lg:flex grid lg:grid-cols-2 grid-cols-1 gap-4">
                         <ListCar
                           image_url={review.image}
                           transmission={review.transmission}
@@ -154,7 +155,6 @@ export default function Pembelian() {
                           year={review.year}
                           brand={review.brand_name}
                           merk={review.name}
-                          description={review.description}
                           key={index}
                           condition={review.condition}
                         ></ListCar>
@@ -165,7 +165,6 @@ export default function Pembelian() {
                           key={index}
                         ></ReviewCard>
                       </div>
-                      <hr className="mt-5"></hr>
                     </>
                   ))
                 : "belum ada review"}

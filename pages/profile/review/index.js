@@ -17,12 +17,12 @@ const Reviews = () => {
 
         <LayoutProfile>
         <div>
-            <section className="p-8">
-                <h1 className="px-3 font-bold text-3xl">Daftar Review Mobil mu</h1>
+            <section className="lg:p-8 p-2">
+                <h1 className="px-3 font-bold text-2xl">Daftar Review Mobilmu</h1>
             <hr className="mt-5"></hr>
             {reviews?.data.length ? reviews?.data.map((review, index) => (
                 <>
-                <div key={index} className="flex">
+                <div key={index} className="lg:flex space-y-8">
                 <ListCar
                 image_url={review.image}
                 transmission={review.transmission}
@@ -33,7 +33,6 @@ const Reviews = () => {
                 year={review.year}
                 brand={review.brand_name}
                 merk={review.name}
-                description={review.description}
                 key={index}
                 condition={review.condition}
               ></ListCar>

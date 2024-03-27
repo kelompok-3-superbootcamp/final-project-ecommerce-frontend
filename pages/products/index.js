@@ -9,6 +9,7 @@ import { useSearchParams } from "next/navigation"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import axios from "axios"
+import { Dropdown } from "flowbite-react"
 // import { headers } from "next/headers"
 
 const fetcher = ([url, header]) => fetch(`${host}${url}`, { headers: header }).then(res => res.json())
@@ -83,16 +84,19 @@ const Product = () => {
     newWishlists[index] = 0
     setWishlists(newWishlists)
   }
+
+  // console.log(navigator.userAgentData.mobile)
+
   return (
     <div>
       <h1 id="title" className="px-6 py-4 text-4xl font-bold">
         Pusat Jual Beli Mobil Online di Indonesia
       </h1>
-      <div className="flex space-y-4 py-2 pb-4" id="listcar">
-        <section className="w-1/4">
+      <div className="lg:flex space-y-4 py-2 pb-4" id="listcar">
+        <section className="lg:w-1/4 hidden lg:block">
           <SideFilter />
         </section>
-        <section className="row-start-auto grid w-3/4 grid-cols-2 grid-rows-5 gap-5 pr-5">
+        <section className="row-start-auto grid lg:w-3/4 lg:grid-cols-2 grid-cols-1 grid-rows-10 lg:grid-rows-5 lg:gap-5 lg:pr-5 m-auto gap-y-10">
           {cars?.data?.data?.map((car, index) => (
             <div key={index}>
               <ListCar
@@ -112,7 +116,7 @@ const Product = () => {
               ></ListCar>
               <div className="w-full bg-white p-1 rounded-b-lg">
                 { wishlists && wishlists[index] ? (
-                  <button className="ml-20 flex" onClick={() => unsave(index, car.id)}>
+                  <button className="ml-14 flex 2xl:ml-20" onClick={() => unsave(index, car.id)}>
                     <svg
                       className="h-6 w-6 text-gray-800 dark:text-white"
                       aria-hidden="true"
@@ -127,7 +131,7 @@ const Product = () => {
                     <h1 className="font-bold">Saved</h1>
                   </button>
                 ) : (
-                  <button className="ml-20 flex" onClick={() => save(index, car.id)}>
+                  <button className="ml-14 flex 2xl:ml-20" onClick={() => save(index, car.id)}>
                     <svg
                       className="h-6 w-6 text-gray-800 dark:text-white"
                       aria-hidden="true"
@@ -139,9 +143,9 @@ const Product = () => {
                     >
                       <path
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
                       />
                     </svg>
@@ -155,6 +159,7 @@ const Product = () => {
       </div>
       <div className="m-auto mb-4 mt-2 flex overflow-x-auto sm:justify-center">
         <Pagination
+          className="m-auto"
           currentPage={cars ? cars.data.current_page : 0}
           totalPages={cars ? Math.ceil(cars.data.total / 10) : 0}
           onPageChange={onPageChange}

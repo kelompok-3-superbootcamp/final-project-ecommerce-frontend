@@ -25,12 +25,12 @@ export default function ListCar({
   return (
     <Link href={`/car/show/${id}`}>
       <div className="rounded-t-lg max-h-56 bg-white px-3 pt-6 flex h-full">
-        <Image className="rounded-lg max-h-52 2xl:min-w-48" src={image_url} alt="gambar" width={200} height={10}/>
+        <Image className="rounded-lg max-h-52 min-w-40 2xl:min-w-48" src={image_url} alt="gambar" width={200} height={10}/>
         <div className="text-wrap w-full px-3 items-center">
-        <h5 className="min-h-8 mb-2 text-2xl 2xl:text-4xl font-bold text-gray-900 dark:text-white">
+        <h5 className="min-h-8 mb-2 text-xl lg:text-2xl 2xl:text-4xl font-bold text-gray-900 dark:text-white">
           {brand} {merk} {year}
         </h5>
-        <div className="font-normal text-gray-700 dark:text-gray-400 2xl:text-2xl">
+        <div className="font-normal text-gray-700 dark:text-gray-400 2xl:text-2xl lg:text-base text-sm">
           <div className="flex justify-between space-x-2">
             <div>
               <div className="flex"><FaLocationDot className="mr-2 mt-1"/> {location}</div>

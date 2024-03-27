@@ -8,10 +8,13 @@ import { useAuthStore } from "@/stores/auth"
 import Swal from "sweetalert2"
 import axios from "axios"
 import Image from "next/image"
+import SideFilter from "./SideFilter"
+import { useState } from "react"
 
 export default function Header() {
   const router = useRouter()
   const { logout, user } = useAuthStore(state => state)
+  const [pop, setPop] = useState(false)
 
   const handleSignOut = () => {
     axios
@@ -55,7 +58,16 @@ export default function Header() {
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white 2xl:text-4xl">SanberCar</span>
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <Dropdown arrowIcon={false} inline label={<Avatar alt="User settings" img="/download.png" rounded />}>
+        <div className="lg:hidden" style={{backgroundColor: '#01253D'}}>
+        <Button onClick={()=>setPop(!pop)} style={{backgroundColor: '#01253D'}}>Cari Mobil
+        </Button>
+
+        <section className="absolute w-full top-16 left-0 max-h-1/2 z-10 bg-white overflow-auto" style={pop ? {} : {display: 'none'}}>
+          <SideFilter />
+        </section>
+
+        </div>
+        <Dropdown onClick={()=>setPop(false)} arrowIcon={false} inline label={<Avatar alt="User settings" img="/download.png" rounded />}>
           {user && (
             <Dropdown.Header>
               <span className="block text-sm">{user.user.name}</span>
@@ -82,14 +94,17 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Dropdown.Item onClick={() => router.push("/auth/login")}>Login</Dropdown.Item>
+              <Dropdown.Item className="min-w-36" onClick={() => router.push("/auth/login")}>Login</Dropdown.Item>
+              <Dropdown.Divider />
               <Dropdown.Item onClick={() => router.push("/auth/register")}>Register</Dropdown.Item>
             </>
           )}
         </Dropdown>
+        <div onClick={()=>setPop(false)}>
         <Navbar.Toggle />
+        </div>
       </div>
-      <Navbar.Collapse>
+      <Navbar.Collapse >
         <Navbar.Link href="/products?condition=bekas" className="my-3 text-white 2xl:text-2xl 2xl:pt-2">
           Mobil Bekas
         </Navbar.Link>

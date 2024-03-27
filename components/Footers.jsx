@@ -30,7 +30,7 @@ export default function Footers() {
               <Footer.Link href="#">08xx xxxx xxxx</Footer.Link>
             </Footer.LinkGroup>
           </div>
-          <div className="mt-4 flex space-x-4 sm:mt-0 sm:justify-center">
+          <div className="mt-4 md:flex md:space-x-4 sm:mt-0 md:justify-center">
             <Footer.Icon href="#" icon={BsFacebook} />
             <Footer.Icon href="#" icon={BsInstagram} />
             <Footer.Icon href="#" icon={BsTwitter} />

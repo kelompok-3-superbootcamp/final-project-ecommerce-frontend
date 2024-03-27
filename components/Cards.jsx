@@ -25,7 +25,7 @@ export default function Cards({ carId, carImage, carName, carPrice, carBrand }) 
               {carBrand} {carName}
             </h2>
             <div className="flex flex-wrap justify-between">
-              <p className="text-gray-700">Rp.{carPrice}</p>
+              <p className="text-gray-700">Rp.{carPrice.toLocaleString()}</p>
             </div>
           </div>
         </div>

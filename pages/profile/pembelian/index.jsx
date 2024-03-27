@@ -100,15 +100,31 @@ export default function Pembelian() {
           ))}
 
           {status == "reviewed" ? (
-            <section className="m-auto grid w-4/5 grid-cols-2 gap-4 p-8">
+            <section className="m-auto w-full p-8">
               {reviews?.data.length
                 ? reviews?.data.map((review, index) => (
-                    <ReviewCard
-                      username={review.user_id}
-                      stars={review.star_count}
-                      description={review.comment}
-                      key={index}
-                    />
+                  <>
+                  <div key={index} className="flex grid grid-cols-2 gap-4">
+                  <ListCar
+                  image_url={review.image}
+                  transmission={review.transmission}
+                  km={review.km}
+                  location={review.location}
+                  color={review.color}
+                  price={review.price}
+                  year={review.year}
+                  brand={review.brand_name}
+                  merk={review.name}
+                  description={review.description}
+                  key={index}
+                  condition={review.condition}
+                ></ListCar>
+                  <ReviewCard username={review.user_name} stars={review.star_count} description={review.comment} key={index}>
+                      
+                  </ReviewCard>
+                  </div>
+                  <hr className="mt-5"></hr>
+                  </>
                   ))
                 : "belum ada review"}
             </section>

@@ -6,6 +6,7 @@ import Image from "next/image"
 import { IoMdColorPalette, IoIosSpeedometer } from "react-icons/io"
 import { GiGearStickPattern } from "react-icons/gi"
 import { FaLocationDot, FaCarOn, FaCalendar, FaHeart } from "react-icons/fa6"
+import { limitString } from "../src/utils/strhelper"
 
 export default function ListCar({
   id,
@@ -19,7 +20,7 @@ export default function ListCar({
   merk,
   description,
   brand,
-  condition
+  condition,
 }) {
   return (
     <Link href={`/car/show/${id}`}>
@@ -41,7 +42,7 @@ export default function ListCar({
               <div className="flex"><FaCarOn className="mr-2 mt-1"/>mobil {condition}</div>
             </div>
           </div>
-          {description}
+          {limitString(description, 40)}
         </div>
         <div className="flex mt-2">
           <h1 className="w-11/12 text-lg font-bold 2xl:text-3xl">Rp {price?.toLocaleString()}</h1>

@@ -96,8 +96,8 @@ const Checkout = ({ orderDetail, carDetail }) => {
     <div id="checkout" className="min-h-[60vh] pt-6">
       <section className="h-14 w-full bg-slate-100">
         <div className="m-auto flex w-2/3 justify-between pt-4 font-semibold">
-          <h1>{carDetail?.name}</h1>
-          <h1>Rp {carDetail?.price}</h1>
+          <h1>{carDetail?.brand_name} {carDetail?.name}</h1>
+          <h1>Rp {carDetail?.price.toLocaleString()}</h1>
         </div>
       </section>
       <div className="m-auto grid w-2/3 grid-cols-1 bg-white p-8 md:grid-cols-2">
@@ -120,7 +120,7 @@ const Checkout = ({ orderDetail, carDetail }) => {
             <hr></hr>
             <div className="flex justify-between">
               <p>Harga :</p>
-              <p>{carDetail?.price}</p>
+              <p>Rp {carDetail?.price.toLocaleString()}</p>
             </div>
             <hr></hr>
             <div className="flex justify-between">
@@ -150,7 +150,7 @@ const Checkout = ({ orderDetail, carDetail }) => {
             <hr></hr>
             <div className="flex justify-between">
               <p>Kilometer :</p>
-              <p>{carDetail?.km} KM</p>
+              <p>{carDetail?.km.toLocaleString()} KM</p>
             </div>
             <hr></hr>
             <div className="flex justify-between">
@@ -184,8 +184,8 @@ const Checkout = ({ orderDetail, carDetail }) => {
             <div className="flex items-start justify-between">
               <p>Total Harga</p>
               <div>
-                {voucherId && <p className="text-red-600 line-through">Rp.{orderDetail.total_price}</p>}
-                <p className="font-bold">Rp.{totalPrice}</p>
+                {voucherId && <p className="text-red-600 line-through">Rp.{orderDetail.total_price.toLocaleString()}</p>}
+                <p className="font-bold">Rp.{totalPrice.toLocaleString()}</p>
               </div>
             </div>
           </figcaption>

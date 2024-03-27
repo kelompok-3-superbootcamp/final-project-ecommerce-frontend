@@ -122,7 +122,7 @@ const Car = () => {
                   <p className="leading-relaxed">{res.description}</p>
 
                   <div className="flex">
-                    <span className="title-font text-2xl font-medium text-gray-900">Rp.{res.price}</span>
+                    <span className="title-font text-2xl font-medium text-gray-900">Rp.{res.price.toLocaleString()}</span>
                   </div>
                   <div className="mt-5 flex justify-between">
                     <button
@@ -191,7 +191,7 @@ const Car = () => {
                       <IoIosSpeedometer />
                     </div>
                     <h3 className="md:text-md pt-2 font-semibold sm:text-sm lg:text-lg">Kilometer</h3>
-                    <p>{res.km}</p>
+                    <p>{res.km.toLocaleString()} km</p>
                   </div>
                 </Slider>
               </div>

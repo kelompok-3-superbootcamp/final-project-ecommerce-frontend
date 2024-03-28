@@ -39,10 +39,10 @@ export default function Etalase() {
 
   return (
     <LayoutProfile>
-      <div className="w-11/12">
-        <h1 className="m-6 ml-16 text-2xl font-bold">Daftar Penjualan Mobil Anda</h1>
+        <h1 className="lg:m-6 m-6 lg:ml-16 text-2xl font-bold">Daftar Penjualan Mobilmu</h1>
+      <div className="lg:w-11/12 w-80 overflow-x-auto">
         {cars?.data?.length ? (
-          <Table hoverable className="mb-8 ml-16">
+          <Table hoverable className="mb-8 mx-6 lg:ml-16">
             <Table.Head>
               <Table.HeadCell className="p-3">No.</Table.HeadCell>
               <Table.HeadCell>Merk</Table.HeadCell>

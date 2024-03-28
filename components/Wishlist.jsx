@@ -45,12 +45,12 @@ export default function Wishlist() {
   }
   return (
     <>
-      <div className="w-11/12">
+      <div className="lg:w-11/12 w-80 overflow-x-auto">
         {cars?.data?.length ? (
           <Table hoverable className="mb-8 ml-6">
             <Table.Head>
               <Table.HeadCell>No.</Table.HeadCell>
-              <Table.HeadCell className="ml-0 pl-0">Merk</Table.HeadCell>
+              <Table.HeadCell>Merk</Table.HeadCell>
               <Table.HeadCell>Tahun</Table.HeadCell>
               <Table.HeadCell>Kondisi</Table.HeadCell>
               <Table.HeadCell>Kilometer</Table.HeadCell>

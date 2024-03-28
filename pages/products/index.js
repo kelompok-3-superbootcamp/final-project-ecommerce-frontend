@@ -73,13 +73,13 @@ const Product = () => {
     router.push(`/products?${paramss}&page=${page}`)
   }
   const save = (index, id) => {
-    axios.post(`${host}/wishlists`, { car_id: id}, {headers: header})
+    axios.post(`${host}/wishlists`, { car_id: id }, { headers: header })
     let newWishlists = [...wishlists]
     newWishlists[index] = 1
     setWishlists(newWishlists)
   }
   const unsave = (index, id) => {
-    axios.delete(`${host}/wishlists/${id}`, {headers: header})
+    axios.delete(`${host}/wishlists/${id}`, { headers: header })
     let newWishlists = [...wishlists]
     newWishlists[index] = 0
     setWishlists(newWishlists)
@@ -92,11 +92,11 @@ const Product = () => {
       <h1 id="title" className="px-6 py-4 text-4xl font-bold">
         Pusat Jual Beli Mobil Online di Indonesia
       </h1>
-      <div className="lg:flex space-y-4 py-2 pb-4" id="listcar">
-        <section className="lg:w-1/4 hidden lg:block">
+      <div className="space-y-4 py-2 pb-4 lg:flex" id="listcar">
+        <section className="hidden lg:block lg:w-1/4">
           <SideFilter />
         </section>
-        <section className="row-start-auto grid lg:w-3/4 lg:grid-cols-2 grid-cols-1 grid-rows-10 lg:grid-rows-5 lg:gap-5 lg:pr-5 m-auto gap-y-10">
+        <section className="row-start-auto m-auto grid grid-cols-1 grid-rows-10 gap-y-10 lg:w-3/4 lg:grid-cols-2 lg:grid-rows-5 lg:gap-5 lg:pr-5">
           {cars?.data?.data?.map((car, index) => (
             <div key={index}>
               <ListCar
@@ -114,8 +114,8 @@ const Product = () => {
                 key={index}
                 condition={car.condition}
               ></ListCar>
-              <div className="w-full bg-white p-1 rounded-b-lg">
-                { wishlists && wishlists[index] ? (
+              <div className="w-full rounded-b-lg bg-white p-1">
+                {wishlists && wishlists[index] ? (
                   <button className="ml-14 flex 2xl:ml-20" onClick={() => unsave(index, car.id)}>
                     <svg
                       className="h-6 w-6 text-gray-800 dark:text-white"
@@ -123,7 +123,7 @@ const Product = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
-                      fill="currentColor"
+                      fill="#f70202"
                       viewBox="0 0 24 24"
                     >
                       <path d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
@@ -142,7 +142,7 @@ const Product = () => {
                       viewBox="0 0 24 24"
                     >
                       <path
-                        stroke="currentColor"
+                        stroke="#f70202"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"

@@ -31,10 +31,10 @@ export default function ListCar({
           {brand} {merk} {year}
         </h5>
         <div className="font-normal text-gray-700 dark:text-gray-400 2xl:text-2xl lg:text-base text-sm">
-          <div className="flex justify-between space-x-2">
+          <div className="lg:flex justify-between lg:space-x-2">
             <div>
               <div className="flex"><FaLocationDot className="mr-2 mt-1"/> {location}</div>
-              <div className="flex"><IoMdColorPalette className="mr-2 mt-1" />warna {color}</div>
+              <div className="flex"><IoMdColorPalette className="mr-2 mt-1" />{description ? 'warna ' : ''}{color}</div>
               <div className="flex"><IoIosSpeedometer className="mr-2 mt-1"/> {km?.toLocaleString()} km</div>
             </div>
             <div>
@@ -42,10 +42,10 @@ export default function ListCar({
               <div className="flex"><FaCarOn className="mr-2 mt-1"/>mobil {condition}</div>
             </div>
           </div>
-          {limitString(description, 40)}
+          {description ? limitString(description, 40) : ''}
         </div>
         <div className="flex mt-2">
-          <h1 className="w-11/12 text-lg font-bold 2xl:text-3xl">Rp {price?.toLocaleString()}</h1>
+          <h1 className="w-11/12 text-base font-bold 2xl:text-3xl">Rp {price?.toLocaleString()}</h1>
         </div>
         </div>
       </div>

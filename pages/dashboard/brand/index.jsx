@@ -125,7 +125,7 @@ const Brand = () => {
               <Table.Head>
                 <Table.HeadCell>No</Table.HeadCell>
                 <Table.HeadCell>Brand</Table.HeadCell>
-                <Table.HeadCell>Logo</Table.HeadCell>
+                {/* <Table.HeadCell>Logo</Table.HeadCell> */}
                 <Table.HeadCell>Action</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
@@ -136,7 +136,7 @@ const Brand = () => {
                       <Table.Cell className="w whitespace-nowrap font-medium text-gray-900 dark:text-white">
                         {item.name}
                       </Table.Cell>
-                      <Table.Cell>
+                      {/* <Table.Cell>
                         <Image
                           src={item.logo_url}
                           alt={item.name}
@@ -145,7 +145,7 @@ const Brand = () => {
                           objectFit="contain"
                           objectPosition="center"
                         />
-                      </Table.Cell>
+                      </Table.Cell> */}
                       <Table.Cell>
                         <div className="flex items-center gap-2">
                           <Link href={`/dashboard/brand/edit/${item.id}`}>

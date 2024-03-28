@@ -29,9 +29,13 @@ const EditBrand = props => {
   const { user } = useAuthStore()
 
   const onFinish = values => {
+    const data = {
+      name: values.name,
+      logo_url: "https://via.placeholder.com/300x200",
+    }
     setIsLoading(true)
     axios
-      .put(`${host}/brands/${id}`, values, {
+      .put(`${host}/brands/${id}`, data, {
         headers: {
           Authorization: "Bearer " + user.access_token,
         },
@@ -130,9 +134,9 @@ const EditBrand = props => {
             </Form.Item>
 
             {/* Logo */}
-            <Form.Item label="Logo" colon={false} name="logo_url">
+            {/* <Form.Item label="Logo" colon={false} name="logo_url">
               <Input />
-            </Form.Item>
+            </Form.Item> */}
 
             <Form.Item
               className="!mt-10"

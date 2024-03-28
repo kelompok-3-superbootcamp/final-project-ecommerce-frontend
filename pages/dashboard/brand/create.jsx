@@ -95,8 +95,12 @@ const AddBrand = () => {
     // if (url) {
     // setMessage("File berhasil diupload")
     setIsLoading(true)
+    const data = {
+      name: values.name,
+      logo_url: "https://via.placeholder.com/300x200",
+    }
     axios
-      .post(`${host}/brands`, values, {
+      .post(`${host}/brands`, data, {
         headers: {
           Authorization: "Bearer " + user.access_token,
         },
@@ -188,9 +192,9 @@ const AddBrand = () => {
         </Form.Item>
 
         {/* Logo */}
-        <Form.Item label="Logo" colon={false} name="logo_url">
+        {/* <Form.Item label="Logo" colon={false} name="logo_url">
           <Input />
-        </Form.Item>
+        </Form.Item> */}
         {/* <div className="flex">
           <label htmlFor="logo_url" className="w-[60px]">
             <span className="text-lg text-red-600">* </span>Logo

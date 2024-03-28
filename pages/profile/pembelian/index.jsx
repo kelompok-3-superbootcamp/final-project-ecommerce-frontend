@@ -74,7 +74,7 @@ export default function Pembelian() {
             </Navbar.Collapse>
           </Navbar>
           {orders?.data?.map((car, index) => (
-            <div key={index} className="grid lg:grid-cols-2 grid-cols-1 gap-4">
+            <div key={index} className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               <ListCar
                 id={car.id}
                 image_url={car.image}
@@ -91,25 +91,25 @@ export default function Pembelian() {
                 condition={car.condition}
               ></ListCar>
               {status === "pending" ? (
-                <Button as={Link} href={car.payment_url} className="text-blue m-auto h-10 bg-white">Bayar Sekarang</Button>
+                <Button as={Link} href={car.payment_url} className="text-blue m-auto h-10 bg-white">
+                  Bayar Sekarang
+                </Button>
               ) : car.isReviewed == 0 ? (
                 <Button href={`/review/${car.id}`} className="text-blue m-auto h-10 bg-white">
                   Beri Penilaian / Review
                 </Button>
               ) : (
                 <h1 className="m-auto">Sudah di Review</h1>
-              )) : (status === 'error' ? <Button onClick={() => handleBuy(car.order_id)} className="text-blue m-auto h-10 bg-white">
-              Bayar Ulang
-            </Button> : <h1 className="lg:mt-7 lg:max-w-full max-w-36 ml-4 text-red-500 font-bold">Status Pembelian dibatalkan!</h1> ))}
+              )}
             </div>
           ))}
 
           {status == "reviewed" ? (
-            <section className="m-auto w-full lg:p-8 space-y-10">
+            <section className="m-auto w-full space-y-10 lg:p-8">
               {reviews?.data.length
                 ? reviews?.data.map((review, index) => (
                     <>
-                      <div key={index} className="lg:flex grid lg:grid-cols-2 grid-cols-1 gap-4">
+                      <div key={index} className="grid grid-cols-1 gap-4 lg:flex lg:grid-cols-2">
                         <ListCar
                           image_url={review.image}
                           transmission={review.transmission}

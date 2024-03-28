@@ -56,7 +56,7 @@ const Checkout = ({ orderDetail, carDetail }) => {
           confirmButtonText: "Ya, pergi membayar!",
         }).then(result => {
           if (result.isConfirmed) {
-            window.open(`${res.data.data}`)
+            window.open(`${res.data.data.payment_url}`)
           }
         })
       })

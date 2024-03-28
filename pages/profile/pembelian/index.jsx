@@ -26,6 +26,7 @@ export default function Pembelian() {
   const { data: orders, error: err1, isLoading: is1, mutate } = useSWR([`/orders/user/${status}`, header], fetcher)
   const { data: reviews, error: err2, isLoading: is2 } = useSWR([`/reviews`, header], fetcher)
 
+  console.log(orders)
   return (
     <>
       <LayoutProfile>
@@ -88,7 +89,7 @@ export default function Pembelian() {
                 condition={car.condition}
               ></ListCar>
               {status === "pending" ? (
-                <Button className="text-blue m-auto h-10 bg-white">Bayar Sekarang</Button>
+                <Button as={Link} href={car.payment_url} className="text-blue m-auto h-10 bg-white">Bayar Sekarang</Button>
               ) : car.isReviewed == 0 ? (
                 <Button href={`/review/${car.id}`} className="text-blue m-auto h-10 bg-white">
                   Beri Penilaian / Review

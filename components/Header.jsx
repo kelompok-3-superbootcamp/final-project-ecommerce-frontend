@@ -1,5 +1,3 @@
-"use client"
-
 import { Avatar, Dropdown, Navbar } from "flowbite-react"
 import { Button } from "flowbite-react"
 import { useRouter } from "next/router"
@@ -52,21 +50,17 @@ export default function Header() {
   }
 
   return (
-    <Navbar fluid style={{ backgroundColor: "#01253D", color: "white" }} className="2xl:h-[9vh]">
+    <Navbar fluid style={{ backgroundColor: "#01253D", color: "white" }}>
       <Navbar.Brand href="/home">
         <Image src="/sanbercar.jpg" className="mr-3 h-10" alt="Flowbite React Logo" width={50} height={50} />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white 2xl:text-4xl">
+        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white 2xl:text-3xl">
           SanberCar
         </span>
       </Navbar.Brand>
-      <div className="flex md:order-2">
+      <div className="flex items-center md:order-2">
         <div class="inline-block h-[50px] min-h-[1em] w-0.5 self-stretch bg-neutral-100 dark:bg-white/10 lg:hidden"></div>
-        <div className="lg:hidden" style={{ backgroundColor: "#01253D" }}>
-          <Button
-            onClick={() => setPop(!pop)}
-            style={{ backgroundColor: "#01253D", marginTop: "7px" }}
-            className="w-20 p-0"
-          >
+        <div className="lg:hidden" style={{ backgroundColor: "#01253D", marginRight: "4px" }}>
+          <Button onClick={() => setPop(!pop)} style={{ backgroundColor: "#01253D" }} className="w-20 p-0">
             Cari
           </Button>
 
@@ -77,71 +71,123 @@ export default function Header() {
             <SideFilter />
           </section>
         </div>
-        <Dropdown
-          onClick={() => setPop(false)}
-          arrowIcon={false}
-          inline
-          label={<Avatar alt="User settings" img="/download.png" rounded />}
-        >
-          {user && (
-            <Dropdown.Header>
-              <span className="block text-sm">{user.user.name}</span>
-              <span className="block truncate text-sm font-medium">{user.email}</span>
-            </Dropdown.Header>
-          )}
-          {user ? (
-            <>
-              {user.user.role === "admin" && (
-                <Dropdown.Item onClick={() => router.push("/dashboard")}>Dashboard</Dropdown.Item>
-              )}
-              <Dropdown.Item href="/profile/akun">Pengaturan Akun</Dropdown.Item>
-              <Dropdown.Item href="/profile">Profil</Dropdown.Item>
-              <Dropdown.Item href="/profile/pembelian">Status Pembelian</Dropdown.Item>
-              <Dropdown.Item href="/profile/wishlists">Daftar Wishlist</Dropdown.Item>
-              <Dropdown.Divider />
+        <div className="hidden md:block">
+          <Dropdown
+            className="!hidden md:!block"
+            onClick={() => setPop(false)}
+            arrowIcon={false}
+            inline
+            label={<Avatar alt="User settings" img="/download.png" rounded />}
+          >
+            {user && (
+              <Dropdown.Header>
+                <span className="block text-sm">{user.user.name}</span>
+                <span className="block truncate text-sm font-medium">{user.email}</span>
+              </Dropdown.Header>
+            )}
+            {user ? (
+              <>
+                {user.user.role === "admin" && (
+                  <Dropdown.Item onClick={() => router.push("/dashboard")}>Dashboard</Dropdown.Item>
+                )}
+                <Dropdown.Item href="/profile/akun">Pengaturan Akun</Dropdown.Item>
+                <Dropdown.Item href="/profile">Profil</Dropdown.Item>
+                <Dropdown.Item href="/profile/pembelian">Status Pembelian</Dropdown.Item>
+                <Dropdown.Item href="/profile/wishlists">Daftar Wishlist</Dropdown.Item>
+                <Dropdown.Divider />
 
-              <Dropdown.Item href="/profile/orders">Status Penjualan</Dropdown.Item>
-              <Dropdown.Item href="/profile/etalase">Etalase</Dropdown.Item>
-              <Dropdown.Item href="/profile/review">Review toko mu</Dropdown.Item>
+                <Dropdown.Item href="/profile/orders">Status Penjualan</Dropdown.Item>
+                <Dropdown.Item href="/profile/etalase">Etalase</Dropdown.Item>
+                <Dropdown.Item href="/profile/review">Review toko mu</Dropdown.Item>
 
-              <Dropdown.Divider />
-              <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
-            </>
-          ) : (
-            <>
-              <Dropdown.Item className="min-w-36" onClick={() => router.push("/auth/login")}>
-                Login
-              </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item onClick={() => router.push("/auth/register")}>Register</Dropdown.Item>
-            </>
-          )}
-        </Dropdown>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
+              </>
+            ) : (
+              <>
+                <Dropdown.Item className="min-w-36" onClick={() => router.push("/auth/login")}>
+                  Login
+                </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={() => router.push("/auth/register")}>Register</Dropdown.Item>
+              </>
+            )}
+          </Dropdown>
+        </div>
         <div onClick={() => setPop(false)}>
           <Navbar.Toggle />
         </div>
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/products?condition=bekas" className="my-3 text-white 2xl:pt-2 2xl:text-2xl">
+        <Navbar.Link href="/products?condition=bekas" className="my-3 text-white 2xl:pt-2 2xl:text-xl">
           Mobil Bekas
         </Navbar.Link>
-        <Navbar.Link href="/products?condition=baru" className="my-3 text-white 2xl:pt-2 2xl:text-2xl">
+        <Navbar.Link href="/products?condition=baru" className="my-3 text-white 2xl:pt-2 2xl:text-xl">
           Mobil Baru
         </Navbar.Link>
-        <Navbar.Link href="/products?type_name=listrik" className="my-3 text-white 2xl:pt-2 2xl:text-2xl">
+        <Navbar.Link href="/products?type_name=listrik" className="my-3 text-white 2xl:pt-2 2xl:text-xl">
           Mobil Listrik
         </Navbar.Link>
-        <Navbar.Link href="/products?transmission=automatic" className="my-3 text-white 2xl:pt-2 2xl:text-2xl">
+        <Navbar.Link href="/products?transmission=automatic" className="my-3 text-white 2xl:pt-2 2xl:text-xl">
           Mobil Matic
         </Navbar.Link>
-        <Navbar.Link href="/products?transmission=manual" className="my-3 text-white 2xl:pt-2 2xl:text-2xl">
+        <Navbar.Link href="/products?transmission=manual" className="my-3 text-white 2xl:pt-2 2xl:text-xl">
           Mobil Manual
         </Navbar.Link>
-        <Navbar.Link href="/car/create" className="text-white 2xl:text-2xl">
+        <Navbar.Link href="/car/create" className="text-white 2xl:text-xl">
           <div className="w-26 h-10 cursor-pointer items-center justify-center rounded-lg bg-yellow-400 2xl:mt-1 2xl:h-16 2xl:w-44 2xl:text-xl">
-            <h1 className="px-3.5 py-2.5 2xl:px-7 2xl:py-4 2xl:text-2xl">Jual Mobil</h1>
+            <h1 className="px-3.5 py-2.5 2xl:px-7 2xl:py-4 2xl:text-xl">Jual Mobil</h1>
           </div>
         </Navbar.Link>
+        <li className="my-4 block pl-2 md:hidden">
+          <Dropdown
+            className="!my-4 !block !pl-2 md:!hidden"
+            style={{ width: "100%" }}
+            onClick={() => setPop(false)}
+            arrowIcon={false}
+            inline
+            label={
+              <div className="flex items-center gap-2">
+                <Avatar alt="User settings" img="/download.png" rounded />
+                <span className="text-base">{user?.user?.name}</span>
+              </div>
+            }
+          >
+            {user && (
+              <Dropdown.Header>
+                <span className="block text-sm">{user.user.name}</span>
+                <span className="block truncate text-sm font-medium">{user.email}</span>
+              </Dropdown.Header>
+            )}
+            {user ? (
+              <>
+                {user.user.role === "admin" && (
+                  <Dropdown.Item onClick={() => router.push("/dashboard")}>Dashboard</Dropdown.Item>
+                )}
+                <Dropdown.Item href="/profile/akun">Pengaturan Akun</Dropdown.Item>
+                <Dropdown.Item href="/profile">Profil</Dropdown.Item>
+                <Dropdown.Item href="/profile/pembelian">Status Pembelian</Dropdown.Item>
+                <Dropdown.Item href="/profile/wishlists">Daftar Wishlist</Dropdown.Item>
+                <Dropdown.Divider />
+
+                <Dropdown.Item href="/profile/orders">Status Penjualan</Dropdown.Item>
+                <Dropdown.Item href="/profile/etalase">Etalase</Dropdown.Item>
+                <Dropdown.Item href="/profile/review">Review toko mu</Dropdown.Item>
+
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
+              </>
+            ) : (
+              <>
+                <Dropdown.Item className="min-w-36" onClick={() => router.push("/auth/login")}>
+                  Login
+                </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={() => router.push("/auth/register")}>Register</Dropdown.Item>
+              </>
+            )}
+          </Dropdown>
+        </li>
       </Navbar.Collapse>
     </Navbar>
   )

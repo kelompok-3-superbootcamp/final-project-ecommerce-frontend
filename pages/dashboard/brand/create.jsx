@@ -188,17 +188,7 @@ const AddBrand = () => {
         </Form.Item>
 
         {/* Logo */}
-        <Form.Item
-          label="Logo"
-          colon={false}
-          name="logo_url"
-          rules={[
-            {
-              required: true,
-              message: "Masukkan image url",
-            },
-          ]}
-        >
+        <Form.Item label="Logo" colon={false} name="logo_url">
           <Input />
         </Form.Item>
         {/* <div className="flex">

@@ -130,17 +130,7 @@ const EditBrand = props => {
             </Form.Item>
 
             {/* Logo */}
-            <Form.Item
-              label="Logo"
-              colon={false}
-              name="logo_url"
-              rules={[
-                {
-                  required: true,
-                  message: "Upload logo",
-                },
-              ]}
-            >
+            <Form.Item label="Logo" colon={false} name="logo_url">
               <Input />
             </Form.Item>
 

@@ -60,11 +60,35 @@ const Product = () => {
     }, 500)
   }
 
+  const resetFilter = () => {
+    setRefetch(true)
+    setOpenFilter(false)
+    setFilter({
+      ...filter,
+      name: "",
+      order_by: "terbaru",
+      user_name: "",
+      brand_name: "",
+      type_name: "",
+      location: "",
+      condition: "",
+      transmission: "",
+      price_range: "",
+      min_price: "",
+      max_price: "",
+      color: "",
+      min_year: "",
+      max_year: "",
+      min_km: "",
+      max_km: "",
+    })
+  }
+
   const onChangeOrderBy = value => {
     setFilter({ ...filter, order_by: value })
   }
-  const onChangeUserName = value => {
-    setFilter({ ...filter, user_name: value })
+  const onChangeUserName = e => {
+    setFilter({ ...filter, user_name: e.target.value })
   }
   const onChangeBrand = value => {
     setFilter({ ...filter, brand_name: value })
@@ -90,8 +114,8 @@ const Product = () => {
   const onChangeMaxPrice = value => {
     setFilter({ ...filter, max_price: value })
   }
-  const onChangeColor = value => {
-    setFilter({ ...filter, color: value })
+  const onChangeColor = e => {
+    setFilter({ ...filter, color: e.target.value })
   }
   const onChangeMinYear = value => {
     setFilter({ ...filter, min_year: value })
@@ -160,7 +184,7 @@ const Product = () => {
   }
 
   useEffect(() => {
-    if (refetch === true) {
+    if (refetch === true && user?.access_token) {
       setIsLoading(true)
       axios
         .get(
@@ -211,64 +235,66 @@ const Product = () => {
           })
         })
     }
-  }, [refetch])
+  }, [refetch, user])
 
   useEffect(() => {
-    if (cars.get)
-      axios
-        .get(`${host}/cars?order_by=terbaru`, {
-          headers: {
-            Authorization: "Bearer " + user?.access_token,
-          },
-        })
-        .then(res => {
-          setCars({
-            data: res.data.data,
-            get: false,
+    if (user && user.access_token) {
+      if (cars.get)
+        axios
+          .get(`${host}/cars?order_by=terbaru`, {
+            headers: {
+              Authorization: "Bearer " + user?.access_token,
+            },
           })
-        })
-        .catch(err => {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: err.response.data.message ?? "",
+          .then(res => {
+            setCars({
+              data: res.data.data,
+              get: false,
+            })
           })
-          setCars({
-            data: null,
-            get: false,
+          .catch(err => {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: err.response.data.message ?? "",
+            })
+            setCars({
+              data: null,
+              get: false,
+            })
           })
-        })
-    if (!masterData.brands) {
-      axios
-        .get(`${host}/brands`)
-        .then(res => {
-          setMasterData({ ...masterData, brands: res.data.data })
-        })
-        .catch(err => {
-          setMasterData({ ...masterData, brands: null })
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: err.response.data.message ?? "",
+      if (!masterData.brands) {
+        axios
+          .get(`${host}/brands`)
+          .then(res => {
+            setMasterData({ ...masterData, brands: res.data.data })
           })
-        })
+          .catch(err => {
+            setMasterData({ ...masterData, brands: null })
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: err.response.data.message ?? "",
+            })
+          })
+      }
+      if (!masterData.types) {
+        axios
+          .get(`${host}/types`)
+          .then(res => {
+            setMasterData({ ...masterData, types: res.data.data })
+          })
+          .catch(err => {
+            setMasterData({ ...masterData, types: null })
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: err.response.data.message ?? "",
+            })
+          })
+      }
     }
-    if (!masterData.types) {
-      axios
-        .get(`${host}/types`)
-        .then(res => {
-          setMasterData({ ...masterData, types: res.data.data })
-        })
-        .catch(err => {
-          setMasterData({ ...masterData, types: null })
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: err.response.data.message ?? "",
-          })
-        })
-    }
-  }, [cars, masterData])
+  }, [cars, masterData, user])
 
   return (
     <>
@@ -416,7 +442,7 @@ const Product = () => {
                               <Space direction="vertical" style={{ marginBottom: "8px" }}>
                                 <Text>Max Harga</Text>
                                 <InputNumber
-                                  value={filter.max_km}
+                                  value={filter.max_price}
                                   style={{
                                     width: 180,
                                   }}
@@ -611,15 +637,15 @@ const Product = () => {
                             </Col>
                           </Space>
                         </Row>
-                        <Button
-                          size="large"
-                          type="primary"
-                          icon={<FaSearch />}
-                          className="!float-end"
-                          onClick={handleSearchSort}
-                        >
-                          Search
-                        </Button>
+                        <Space className="!float-end">
+                          <Button size="large" type="default" className="!float-end" onClick={resetFilter}>
+                            Reset
+                          </Button>
+
+                          <Button size="large" type="primary" icon={<FaSearch />} onClick={handleSearchSort}>
+                            Search
+                          </Button>
+                        </Space>
                       </div>
                     </Show.When>
                   </Show>
@@ -634,6 +660,7 @@ const Product = () => {
                   }}
                   placeholder="input search text"
                   allowClear
+                  value={filter.name}
                   enterButton="Search"
                   size="large"
                   onChange={onChangeSearch}

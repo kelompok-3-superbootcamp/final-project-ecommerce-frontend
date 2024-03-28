@@ -68,10 +68,9 @@ const AddBrand = () => {
 
   console.log("file", file)
 
-  const onFinish = async fieldsValue => {
-    if (!file) return alert("file kosong")
-    const formData = new FormData()
-    formData.append("file", file)
+  const onFinish = async values => {
+    // const formData = new FormData()
+    // formData.append("file", file)
     // setMessage("Uploading...")
 
     // try {
@@ -94,10 +93,6 @@ const AddBrand = () => {
     // }
 
     // if (url) {
-    const values = {
-      name: fieldsValue.name,
-      logo_url: url ? url : "",
-    }
     // setMessage("File berhasil diupload")
     setIsLoading(true)
     axios

@@ -27,41 +27,8 @@ export default function Pembelian() {
   let header = { Authorization: `Bearer ${user?.access_token}` }
   const { data: orders, error: err1, isLoading: is1, mutate } = useSWR([`/orders/user/${status}`, header], fetcher)
   const { data: reviews, error: err2, isLoading: is2 } = useSWR([`/reviews`, header], fetcher)
-  console.log("orderan:", orders)
-  const handleBuy = id => {
-    axios
-      .post(
-        `${host}/orders/checkout/${id}`,
-        {},
-        {
-          headers: { Authorization: "Bearer " + user.access_token },
-        },
-      )
-      .then(res => {
-        Swal.fire({
-          title: "Apakah kamu yakin?",
-          text: `Pastikan kamu membayarnya dalam waktu 24 jam`,
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Ya, pergi membayar!",
-        }).then(result => {
-          if (result.isConfirmed) {
-            window.open(`${res.data.data}`)
-          }
-        })
-      })
-      .catch(error => {
-        Swal.fire({
-          icon: "error",
-          title: "Failed",
-          text: error?.response.data.message ?? "Checkout gagal",
-        })
-        console.error(error)
-      })
-  }
 
+  console.log(orders)
   return (
     <>
       <LayoutProfile>
@@ -123,11 +90,9 @@ export default function Pembelian() {
                 key={index}
                 condition={car.condition}
               ></ListCar>
-              { status === "pending" ? (
-                <Button onClick={() => handleBuy(car.order_id)} className="text-blue m-auto h-10 bg-white mt-10 lg:my-auto">
-                  Bayar Sekarang
-                </Button>
-              ) : (status === "success" ? (car.isReviewed == 0 ? (
+              {status === "pending" ? (
+                <Button as={Link} href={car.payment_url} className="text-blue m-auto h-10 bg-white">Bayar Sekarang</Button>
+              ) : car.isReviewed == 0 ? (
                 <Button href={`/review/${car.id}`} className="text-blue m-auto h-10 bg-white">
                   Beri Penilaian / Review
                 </Button>

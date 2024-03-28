@@ -17,7 +17,6 @@ const Order = () => {
     data: null,
     get: true,
   })
-  console.log("orders", orders)
 
   useEffect(() => {
     if (orders.get)
@@ -62,21 +61,19 @@ const Order = () => {
                 <Table.HeadCell>Total Pembayaran</Table.HeadCell>
                 <Table.HeadCell>Metode Pembayaran</Table.HeadCell>
                 <Table.HeadCell>Status Pembayaran</Table.HeadCell>
-                <Table.HeadCell>Waktu Transaksi</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
-                {orders.data?.data?.length ? (
-                  orders.data?.data?.map((item, index) => (
+                {orders.data?.length ? (
+                  orders.data?.map((item, index) => (
                     <Table.Row key={item.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                       <Table.Cell>{index + 1}</Table.Cell>
                       <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        {item?.user_id}
+                        {item?.user_name}
                       </Table.Cell>
-                      <Table.Cell>{item?.car_id}</Table.Cell>
+                      <Table.Cell>{item?.car_name}</Table.Cell>
                       <Table.Cell>{item?.total_price}</Table.Cell>
                       <Table.Cell>{item?.payment_method}</Table.Cell>
                       <Table.Cell>{item?.payment_status}</Table.Cell>
-                      <Table.Cell>{item?.date}</Table.Cell>
                     </Table.Row>
                   ))
                 ) : (

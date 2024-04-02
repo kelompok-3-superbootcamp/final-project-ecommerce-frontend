@@ -52,7 +52,17 @@ export default function Header() {
   return (
     <Navbar fluid style={{ backgroundColor: "#01253D", color: "white" }}>
       <Navbar.Brand href="/home">
-        <Image src="/sanbercar.jpg" className="mr-3 h-10" alt="Flowbite React Logo" width={50} height={50} />
+        <Image
+          src="/sanbercar.jpg"
+          className="mr-3 h-10"
+          alt="Logo"
+          width={50}
+          height={0}
+          style={{
+            objectFit: "contain",
+            height: "max-content",
+          }}
+        />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white 2xl:text-3xl">
           SanberCar
         </span>
